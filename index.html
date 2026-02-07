@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Radar De Ofertas | Achadinhos e Promoções</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --green:#27ae60;
+  --green2:#219150;
+  --bg:#f2f2f2;
+  --card:#ffffff;
+  --text:#222;
+  --muted:#666;
+  --border:rgba(0,0,0,0.10);
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* ===== HEADER ===== */
+header{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,0.06);
+}
+.header-container{
+  max-width:1200px;
+  margin:auto;
+  padding:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.logo{
+  font-weight:900;
+  font-size:18px;
+  color:var(--green);
+  white-space:nowrap;
+}
+nav{
+  display:flex;
+  gap:8px;
+}
+nav a{
+  text-decoration:none;
+  font-weight:900;
+  font-size:clamp(11px,2.6vw,13px);
+  padding:clamp(6px,1.6vw,8px) clamp(7px,2.2vw,10px);
+  border-radius:10px;
+  background:#f3fff7;
+  color:#1f8a4a;
+  border:1px solid rgba(39,174,96,0.18);
+  white-space:nowrap;
+}
+nav a:hover{ background:var(--green); color:#fff; }
+
+@media (max-width:720px){
+  .header-container{
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+  nav{
+    width:100%;
+    justify-content:center;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  nav::-webkit-scrollbar{ display:none; }
+}
+
+/* ===== LAYOUT ===== */
+.wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:22px 14px 60px;
+}
+
+/* HERO */
+.hero{
+  background:var(--card);
+  border-radius:16px;
+  padding:26px 22px;
+  box-shadow:0 0 18px rgba(0,0,0,0.10);
+  text-align:center;
+}
+.hero h1{
+  margin:0 0 8px;
+  color:var(--green);
+  font-size:26px;
+}
+.hero p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* ===== ACHADINHO DO DIA (compacto) ===== */
+.curiosity-top{
+  margin-top:14px;
+  background:var(--card);
+  border-radius:16px;
+  padding:14px 16px;
+  box-shadow:0 0 18px rgba(0,0,0,0.08);
+}
+
+.curiosity-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:6px;
+}
+
+.curiosity-badge{
+  background:#f3fff7;
+  border:1px solid rgba(39,174,96,0.18);
+  color:#1f8a4a;
+  font-weight:900;
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+.curiosity-more{
+  text-decoration:none;
+  font-weight:900;
+  font-size:12px;
+  color:#fff;
+  background:var(--green);
+  padding:6px 10px;
+  border-radius:999px;
+}
+.curiosity-more:hover{ background:var(--green2); }
+
+.curiosity-title{
+  margin:6px 0 4px;
+  font-weight:900;
+  color:#1f8a4a;
+  font-size:15px;
+}
+.curiosity-text{
+  margin:0;
+  font-size:14px;
+  color:#444;
+  line-height:1.45;
+}
+
+.curiosity-actions{
+  margin-top:10px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.curiosity-actions button{
+  border:none;
+  cursor:pointer;
+  background:#f3fff7;
+  color:#1f8a4a;
+  border:1px solid rgba(39,174,96,0.25);
+  font-weight:900;
+  padding:8px 12px;
+  border-radius:12px;
+}
+.curiosity-actions button:hover{
+  background:var(--green);
+  color:#fff;
+}
+.curiosity-actions a{
+  text-decoration:none;
+  background:var(--green);
+  color:#fff;
+  font-weight:900;
+  padding:8px 12px;
+  border-radius:12px;
+}
+.curiosity-actions a:hover{ background:var(--green2); }
+
+/* ===== SECTIONS ===== */
+.section{ margin-top:18px; }
+.section-title{
+  font-weight:900;
+  color:var(--green);
+  font-size:18px;
+  margin-bottom:10px;
+}
+
+/* ===== SLIDERS ===== */
+.cards-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+@media (max-width:980px){
+  .cards-row{ grid-template-columns:1fr; }
+}
+
+.card{
+  background:var(--card);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 0 18px rgba(0,0,0,0.08);
+}
+
+.slider{
+  position:relative;
+  height:520px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transform:translateY(6px);
+  transition:opacity .5s ease, transform .5s ease;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  text-align:center;
+  pointer-events:none;
+}
+.slide.active{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+  cursor:pointer;
+}
+
+/* Hover clicável (desktop) */
+.slide.active:hover{
+  transform:translateY(-2px) scale(1.01);
+}
+.slide img{
+  width:100%;
+  max-width:320px;
+  height:340px;
+  object-fit:contain;
+  border-radius:14px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.16);
+  background:#fff;
+}
+.slide .name{
+  font-weight:900;
+  margin-top:10px;
+}
+.slide .desc{
+  font-size:13px;
+  color:#666;
+  line-height:1.35;
+}
+
+/* controls */
+.slider-controls{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+}
+.mini-btn{
+  background:#f3fff7;
+  border:1px solid rgba(39,174,96,0.20);
+  color:#1f8a4a;
+  font-weight:900;
+  padding:8px 12px;
+  border-radius:12px;
+  cursor:pointer;
+}
+.mini-btn:hover{ background:var(--green); color:#fff; }
+
+/* ===== SEÇÃO VIDEOS (em breve) ===== */
+.info-card{
+  margin-top:16px;
+  background:var(--card);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 0 18px rgba(0,0,0,0.08);
+}
+.info-card h3{
+  margin:0 0 8px;
+  color:var(--green);
+  font-weight:900;
+}
+.info-card p{
+  margin:0;
+  color:#444;
+  line-height:1.5;
+  font-size:14px;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:12px;
+  color:#888;
+  margin-top:18px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-container">
+    <div class="logo">Radar De Ofertas</div>
+    <nav>
+      <!-- Mantive os arquivos antigos pra não quebrar links agora -->
+      <a href="index.html">Início</a>
+      <a href="ebooks.html">Ofertas</a>
+      <a href="produtos.html">Amazon</a>
+      <a href="videos.html">Vídeos</a>
+      <a href="curiosidades.html">Achadinhos</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="hero">
+  <h1>Radar De Ofertas</h1>
+  <p>Achadinhos reais, promoções e produtos úteis de <strong>tudo</strong>: casa, eletrônicos, beleza, moda e mais.</p>
+</section>
+
+<section class="curiosity-top">
+  <div class="curiosity-head">
+    <span class="curiosity-badge">Achadinho do dia</span>
+    <a class="curiosity-more" href="curiosidades.html">Ver + Ofertas</a>
+  </div>
+
+  <h3 class="curiosity-title" id="dealTitle"></h3>
+  <p class="curiosity-text" id="dealText"></p>
+
+  <div class="curiosity-actions">
+    <button onclick="copyDeal()">📋 Copiar</button>
+    <a id="dealLinkBtn" href="produtos.html">Abrir oferta</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">Destaques</div>
+
+  <div class="cards-row">
+    <div class="card">
+      <div class="section-title">Ofertas em destaque</div>
+      <div class="slider" id="ebooksSlider"></div>
+      <div class="slider-controls">
+        <button class="mini-btn" onclick="prevSlide('ebooks')">◀</button>
+        <button class="mini-btn" onclick="nextSlide('ebooks')">▶</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Mais procurados</div>
+      <div class="slider" id="produtosSlider"></div>
+      <div class="slider-controls">
+        <button class="mini-btn" onclick="prevSlide('produtos')">◀</button>
+        <button class="mini-btn" onclick="nextSlide('produtos')">▶</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="info-card">
+  <h3>Vídeos</h3>
+  <p><strong>Em breve</strong> — reviews rápidos, comparativos, “vale a pena?” e testes honestos dos produtos.</p>
+</section>
+
+<footer>© 2026 Radar De Ofertas</footer>
+</main>
+
+<script>
+/* ===== ACHADINHO DO DIA =====
+   Troque os textos e links conforme você for publicando. */
+const deals = [
+  {
+    t: "Promo relâmpago: Fone Bluetooth custo-benefício",
+    d: "Se você quer um fone baratinho pra dia a dia, procura por modelos com 4.5+ estrelas e boa autonomia (6h+).",
+    link: "produtos.html"
+  },
+  {
+    t: "Achadinho de casa: organizadores que mudam tudo",
+    d: "Organizadores transparentes + etiquetas deixam a casa mais prática e dão sensação de “tudo no lugar”.",
+    link: "produtos.html"
+  },
+  {
+    t: "Eletrônicos: carregador rápido com proteção",
+    d: "Prefira carregadores com proteção contra sobrecarga e cabo reforçado. Vale mais do que o mais barato.",
+    link: "produtos.html"
+  }
+];
+
+function dayKey(){
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
+}
+function hashString(str){
+  let h=0;
+  for(let i=0;i<str.length;i++){
+    h=(h<<5)-h+str.charCodeAt(i);
+    h|=0;
+  }
+  return Math.abs(h);
+}
+
+const dealIndex = hashString(dayKey()) % deals.length;
+const deal = deals[dealIndex];
+
+document.getElementById("dealTitle").textContent = deal.t;
+document.getElementById("dealText").textContent = deal.d;
+
+const dealBtn = document.getElementById("dealLinkBtn");
+dealBtn.href = deal.link;
+
+function copyDeal(){
+  const txt = `Radar De Ofertas — ${deal.t}\n\n${deal.d}\n\nConfira: ${deal.link}`;
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt);
+  }else{
+    const ta=document.createElement("textarea");
+    ta.value=txt; ta.style.position="fixed"; ta.style.left="-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(ta);
+  }
+}
+
+/* ===== SLIDERS COM AUTOPLAY =====
+   "ebooks" aqui virou "Ofertas em destaque" (mantive o id pra não quebrar nada) */
+const data={
+  ebooks:[
+    {n:"Smartwatch custo-benefício", i:"oferta_smartwatch.png", d:"Ótimo para dia a dia: passos, notificações e bateria boa.", l:"produtos.html"},
+    {n:"Organizadores para geladeira", i:"oferta_organizadores.png", d:"Deixa tudo visível e organizado — dá outra cara na cozinha.", l:"produtos.html"},
+    {n:"Kit beleza / autocuidado", i:"oferta_beleza.png", d:"Itens úteis pra rotina (sem gastar muito).", l:"produtos.html"},
+    {n:"Lâmpada inteligente", i:"oferta_lampada.png", d:"Controle pelo celular + economia + ambiente mais bonito.", l:"produtos.html"}
+  ],
+  produtos:[
+    {n:"Creatina Monohidratada (exemplo)", i:"creatina-puro-nutrition-300g.jpg", d:"Exemplo de item — troque para seus achados atuais.", l:"produtos.html"},
+    {n:"Ômega 3 (exemplo)", i:"omega-3-vitamina-e-everlasting-90caps.jpg", d:"Exemplo de item — troque conforme suas ofertas.", l:"produtos.html"}
+  ]
+};
+
+const idx={ebooks:0,produtos:0};
+
+function render(type){
+  const s=document.getElementById(type+"Slider");
+  const it=data[type][idx[type]];
+  s.innerHTML =
+    `<div class="slide active" onclick="location.href='${it.l}'">
+      <img src="${it.i}" alt="${it.n}" loading="lazy">
+      <div class="name">${it.n}</div>
+      <div class="desc">${it.d}</div>
+    </div>`;
+}
+function nextSlide(t){ idx[t]=(idx[t]+1)%data[t].length; render(t); }
+function prevSlide(t){ idx[t]=(idx[t]-1+data[t].length)%data[t].length; render(t); }
+
+render("ebooks");
+render("produtos");
+setInterval(()=>nextSlide("ebooks"),3500);
+setInterval(()=>nextSlide("produtos"),3500);
+</script>
+
+</body>
+</html>
