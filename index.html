@@ -1,318 +1,489 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Radar De Ofertas | Achadinhos e Promoções</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root{
-  --green:#27ae60;
-  --green2:#219150;
-  --bg:#f2f2f2;
-  --card:#ffffff;
-  --text:#222;
-  --muted:#666;
-  --border:rgba(0,0,0,0.10);
-}
+  :root{
+    /* NOVA IDENTIDADE */
+    --bg:#0b0f14;
+    --panel:#0f1620;
+    --panel2:#0c121a;
+    --card:#121b27;
+    --card2:#0f1722;
+    --text:#eaf0ff;
+    --muted:#a8b3c7;
+    --border:rgba(255,255,255,0.08);
 
-*{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; }
+    /* Acentos */
+    --accent:#00e0ff;   /* ciano */
+    --accent2:#7c3aed;  /* roxo */
+    --ok:#22c55e;       /* verde */
+    --warn:#f59e0b;     /* amarelo */
+  }
 
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:
+      radial-gradient(1200px 600px at 10% 0%, rgba(0,224,255,0.12), transparent 60%),
+      radial-gradient(1200px 600px at 90% 10%, rgba(124,58,237,0.10), transparent 60%),
+      var(--bg);
+    color:var(--text);
+  }
 
-/* ===== HEADER ===== */
-header{
-  position:sticky;
-  top:0;
-  z-index:999;
-  background:#fff;
-  box-shadow:0 2px 10px rgba(0,0,0,0.06);
-}
-.header-container{
-  max-width:1200px;
-  margin:auto;
-  padding:14px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-}
-.logo{
-  font-weight:900;
-  font-size:18px;
-  color:var(--green);
-  white-space:nowrap;
-}
-nav{
-  display:flex;
-  gap:8px;
-}
-nav a{
-  text-decoration:none;
-  font-weight:900;
-  font-size:clamp(11px,2.6vw,13px);
-  padding:clamp(6px,1.6vw,8px) clamp(7px,2.2vw,10px);
-  border-radius:10px;
-  background:#f3fff7;
-  color:#1f8a4a;
-  border:1px solid rgba(39,174,96,0.18);
-  white-space:nowrap;
-}
-nav a:hover{ background:var(--green); color:#fff; }
+  /* ===== HEADER ===== */
+  header{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:rgba(11,15,20,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--border);
+  }
 
-@media (max-width:720px){
   .header-container{
-    flex-direction:column;
+    max-width:1200px;
+    margin:auto;
+    padding:14px 14px 10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+  }
+
+  .logo{
+    font-weight:900;
+    letter-spacing:0.2px;
+    font-size:18px;
+    white-space:nowrap;
+    display:flex;
     align-items:center;
     gap:10px;
   }
-  nav{
-    width:100%;
+  .logo-badge{
+    width:34px; height:34px;
+    border-radius:12px;
+    background:linear-gradient(135deg, rgba(0,224,255,0.22), rgba(124,58,237,0.22));
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
     justify-content:center;
-    overflow-x:auto;
-    scrollbar-width:none;
+    font-weight:900;
+    color:var(--text);
   }
-  nav::-webkit-scrollbar{ display:none; }
-}
+  .logo span{
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
 
-/* ===== LAYOUT ===== */
-.wrap{
-  max-width:1200px;
-  margin:auto;
-  padding:22px 14px 60px;
-}
+  nav{
+    display:flex;
+    gap:8px;
+  }
+  nav a{
+    text-decoration:none;
+    font-weight:900;
+    font-size:clamp(11px,2.6vw,13px);
+    padding:clamp(7px,1.6vw,9px) clamp(8px,2.2vw,11px);
+    border-radius:12px;
+    color:var(--text);
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--border);
+    white-space:nowrap;
+  }
+  nav a:hover{
+    border-color:rgba(0,224,255,0.35);
+    background:rgba(0,224,255,0.08);
+  }
 
-/* HERO */
-.hero{
-  background:var(--card);
-  border-radius:16px;
-  padding:26px 22px;
-  box-shadow:0 0 18px rgba(0,0,0,0.10);
-  text-align:center;
-}
-.hero h1{
-  margin:0 0 8px;
-  color:var(--green);
-  font-size:26px;
-}
-.hero p{
-  margin:0;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.5;
-}
+  @media (max-width:720px){
+    .header-container{
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+      padding:12px 12px 10px;
+    }
+    nav{
+      width:100%;
+      justify-content:center;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    nav::-webkit-scrollbar{ display:none; }
+  }
 
-/* ===== ACHADINHO DO DIA (compacto) ===== */
-.curiosity-top{
-  margin-top:14px;
-  background:var(--card);
-  border-radius:16px;
-  padding:14px 16px;
-  box-shadow:0 0 18px rgba(0,0,0,0.08);
-}
+  /* ===== WRAP ===== */
+  .wrap{
+    max-width:1200px;
+    margin:auto;
+    padding:18px 14px 60px;
+  }
 
-.curiosity-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:6px;
-}
+  /* ===== HERO ===== */
+  .hero{
+    background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.35);
+  }
 
-.curiosity-badge{
-  background:#f3fff7;
-  border:1px solid rgba(39,174,96,0.18);
-  color:#1f8a4a;
-  font-weight:900;
-  font-size:12px;
-  padding:6px 10px;
-  border-radius:999px;
-}
+  .hero-top{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:14px;
+    flex-wrap:wrap;
+  }
 
-.curiosity-more{
-  text-decoration:none;
-  font-weight:900;
-  font-size:12px;
-  color:#fff;
-  background:var(--green);
-  padding:6px 10px;
-  border-radius:999px;
-}
-.curiosity-more:hover{ background:var(--green2); }
+  .hero h1{
+    margin:0;
+    font-size:26px;
+    letter-spacing:0.2px;
+  }
+  .hero p{
+    margin:8px 0 0;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.45;
+    max-width:720px;
+  }
 
-.curiosity-title{
-  margin:6px 0 4px;
-  font-weight:900;
-  color:#1f8a4a;
-  font-size:15px;
-}
-.curiosity-text{
-  margin:0;
-  font-size:14px;
-  color:#444;
-  line-height:1.45;
-}
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 12px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,0.04);
+    color:var(--muted);
+    font-weight:900;
+    font-size:12px;
+    white-space:nowrap;
+  }
 
-.curiosity-actions{
-  margin-top:10px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
-}
-.curiosity-actions button{
-  border:none;
-  cursor:pointer;
-  background:#f3fff7;
-  color:#1f8a4a;
-  border:1px solid rgba(39,174,96,0.25);
-  font-weight:900;
-  padding:8px 12px;
-  border-radius:12px;
-}
-.curiosity-actions button:hover{
-  background:var(--green);
-  color:#fff;
-}
-.curiosity-actions a{
-  text-decoration:none;
-  background:var(--green);
-  color:#fff;
-  font-weight:900;
-  padding:8px 12px;
-  border-radius:12px;
-}
-.curiosity-actions a:hover{ background:var(--green2); }
+  /* ===== SEARCH TOP ===== */
+  .search-area{
+    margin-top:14px;
+    display:grid;
+    grid-template-columns: 1fr auto;
+    gap:10px;
+  }
 
-/* ===== SECTIONS ===== */
-.section{ margin-top:18px; }
-.section-title{
-  font-weight:900;
-  color:var(--green);
-  font-size:18px;
-  margin-bottom:10px;
-}
+  .search-input{
+    width:100%;
+    border-radius:14px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,0.04);
+    color:var(--text);
+    padding:14px 14px;
+    font-weight:800;
+    outline:none;
+  }
+  .search-input::placeholder{
+    color:rgba(234,240,255,0.55);
+    font-weight:700;
+  }
 
-/* ===== SLIDERS ===== */
-.cards-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
-}
-@media (max-width:980px){
-  .cards-row{ grid-template-columns:1fr; }
-}
+  .btn{
+    border:none;
+    cursor:pointer;
+    border-radius:14px;
+    padding:14px 16px;
+    font-weight:900;
+    color:#071018;
+    background:linear-gradient(90deg, var(--accent), rgba(0,224,255,0.75));
+    box-shadow:0 10px 24px rgba(0,224,255,0.15);
+    white-space:nowrap;
+  }
+  .btn:hover{ filter:brightness(1.05); }
 
-.card{
-  background:var(--card);
-  border-radius:16px;
-  padding:18px;
-  box-shadow:0 0 18px rgba(0,0,0,0.08);
-}
+  .btn-ghost{
+    background:rgba(255,255,255,0.05);
+    color:var(--text);
+    border:1px solid var(--border);
+    box-shadow:none;
+  }
+  .btn-ghost:hover{
+    background:rgba(255,255,255,0.07);
+    border-color:rgba(124,58,237,0.35);
+  }
 
-.slider{
-  position:relative;
-  height:520px;
-  border:1px solid var(--border);
-  border-radius:16px;
-  overflow:hidden;
-  background:#fff;
-}
+  @media (max-width:520px){
+    .search-area{
+      grid-template-columns:1fr;
+    }
+  }
 
-.slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transform:translateY(6px);
-  transition:opacity .5s ease, transform .5s ease;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-  text-align:center;
-  pointer-events:none;
-}
-.slide.active{
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
-  cursor:pointer;
-}
+  /* ===== SECTIONS ===== */
+  .section{
+    margin-top:16px;
+  }
+  .section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:10px;
+    margin:0 0 10px;
+    font-weight:900;
+    font-size:18px;
+  }
+  .section-title small{
+    color:var(--muted);
+    font-weight:800;
+    font-size:12px;
+  }
 
-/* Hover clicável (desktop) */
-.slide.active:hover{
-  transform:translateY(-2px) scale(1.01);
-}
-.slide img{
-  width:100%;
-  max-width:320px;
-  height:340px;
-  object-fit:contain;
-  border-radius:14px;
-  box-shadow:0 8px 18px rgba(0,0,0,0.16);
-  background:#fff;
-}
-.slide .name{
-  font-weight:900;
-  margin-top:10px;
-}
-.slide .desc{
-  font-size:13px;
-  color:#666;
-  line-height:1.35;
-}
+  /* ===== ACHADINHO DO DIA ===== */
+  .deal{
+    background:linear-gradient(180deg, rgba(124,58,237,0.10), rgba(255,255,255,0.03));
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:14px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    justify-content:space-between;
+    flex-wrap:wrap;
+  }
 
-/* controls */
-.slider-controls{
-  display:flex;
-  justify-content:space-between;
-  margin-top:10px;
-}
-.mini-btn{
-  background:#f3fff7;
-  border:1px solid rgba(39,174,96,0.20);
-  color:#1f8a4a;
-  font-weight:900;
-  padding:8px 12px;
-  border-radius:12px;
-  cursor:pointer;
-}
-.mini-btn:hover{ background:var(--green); color:#fff; }
+  .deal-left{
+    min-width:260px;
+    flex:1 1 420px;
+  }
 
-/* ===== SEÇÃO VIDEOS (em breve) ===== */
-.info-card{
-  margin-top:16px;
-  background:var(--card);
-  border-radius:16px;
-  padding:18px;
-  box-shadow:0 0 18px rgba(0,0,0,0.08);
-}
-.info-card h3{
-  margin:0 0 8px;
-  color:var(--green);
-  font-weight:900;
-}
-.info-card p{
-  margin:0;
-  color:#444;
-  line-height:1.5;
-  font-size:14px;
-}
+  .deal-badges{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    align-items:center;
+    margin-bottom:8px;
+  }
 
-/* FOOTER */
-footer{
-  text-align:center;
-  font-size:12px;
-  color:#888;
-  margin-top:18px;
-}
+  .tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 10px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,0.04);
+    color:var(--text);
+    font-weight:900;
+    font-size:12px;
+    white-space:nowrap;
+  }
+  .tag.hot{
+    background:rgba(0,224,255,0.10);
+    border-color:rgba(0,224,255,0.25);
+  }
+
+  .deal h3{
+    margin:0 0 6px;
+    font-size:15px;
+    line-height:1.3;
+  }
+  .deal p{
+    margin:0;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.45;
+  }
+
+  .deal-actions{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+
+  /* ===== CATEGORIES ===== */
+  .cat-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:12px;
+  }
+  @media (max-width:980px){
+    .cat-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width:520px){
+    .cat-grid{ grid-template-columns: 1fr; }
+  }
+
+  .cat-card{
+    text-decoration:none;
+    color:var(--text);
+    border:1px solid var(--border);
+    border-radius:16px;
+    background:rgba(255,255,255,0.04);
+    padding:14px;
+    box-shadow:0 18px 35px rgba(0,0,0,0.25);
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    min-height:92px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .cat-card:hover{
+    transform: translateY(-2px);
+    border-color:rgba(0,224,255,0.25);
+    background:rgba(0,224,255,0.06);
+  }
+  .cat-ico{
+    width:42px; height:42px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    background:linear-gradient(135deg, rgba(0,224,255,0.14), rgba(124,58,237,0.14));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    font-size:16px;
+  }
+  .cat-name{
+    font-weight:900;
+    margin:0;
+    font-size:14px;
+  }
+  .cat-sub{
+    margin:4px 0 0;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.35;
+  }
+
+  /* ===== SLIDERS ===== */
+  .cards-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media (max-width:980px){
+    .cards-row{ grid-template-columns:1fr; }
+  }
+
+  .card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:16px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.30);
+  }
+
+  .slider{
+    position:relative;
+    height:520px;
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+    background:rgba(0,0,0,0.18);
+  }
+
+  .slide{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transform:translateY(6px);
+    transition: opacity .5s ease, transform .5s ease;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    text-align:center;
+    pointer-events:none;
+  }
+  .slide.active{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+    cursor:pointer;
+  }
+  .slide.active:hover{
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  .slide img{
+    width:100%;
+    max-width:320px;
+    height:340px;
+    object-fit:contain;
+    border-radius:16px;
+    box-shadow:0 18px 30px rgba(0,0,0,0.35);
+    background:rgba(255,255,255,0.03);
+    border:1px solid var(--border);
+  }
+  .slide .name{
+    font-weight:900;
+    margin-top:12px;
+    font-size:15px;
+  }
+  .slide .desc{
+    margin-top:6px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.35;
+    max-width:520px;
+  }
+
+  .slider-controls{
+    margin-top:10px;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    align-items:center;
+  }
+
+  .mini-btn{
+    border:none;
+    cursor:pointer;
+    border-radius:14px;
+    padding:10px 12px;
+    font-weight:900;
+    color:var(--text);
+    background:rgba(255,255,255,0.05);
+    border:1px solid var(--border);
+  }
+  .mini-btn:hover{
+    border-color:rgba(0,224,255,0.25);
+    background:rgba(0,224,255,0.08);
+  }
+
+  /* ===== INFO VIDEO ===== */
+  .info{
+    margin-top:16px;
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:16px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.30);
+  }
+  .info h3{
+    margin:0 0 8px;
+    font-weight:900;
+  }
+  .info p{
+    margin:0;
+    color:var(--muted);
+    line-height:1.5;
+    font-size:14px;
+  }
+
+  footer{
+    text-align:center;
+    color:rgba(234,240,255,0.55);
+    font-size:12px;
+    margin-top:18px;
+  }
 </style>
 </head>
 
@@ -320,163 +491,293 @@ footer{
 
 <header>
   <div class="header-container">
-    <div class="logo">Radar De Ofertas</div>
+    <div class="logo">
+      <div class="logo-badge">↗</div>
+      <span>Radar De Ofertas</span>
+    </div>
+
     <nav>
-      <!-- Mantive os arquivos antigos pra não quebrar links agora -->
       <a href="index.html">Início</a>
-      <a href="ebooks.html">Ofertas</a>
-      <a href="produtos.html">Amazon</a>
+      <a href="ofertas.html">Ofertas</a>
+      <a href="categorias.html">Categorias</a>
       <a href="videos.html">Vídeos</a>
-      <a href="curiosidades.html">Achadinhos</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
 
-<section class="hero">
-  <h1>Radar De Ofertas</h1>
-  <p>Achadinhos reais, promoções e produtos úteis de <strong>tudo</strong>: casa, eletrônicos, beleza, moda e mais.</p>
-</section>
-
-<section class="curiosity-top">
-  <div class="curiosity-head">
-    <span class="curiosity-badge">Achadinho do dia</span>
-    <a class="curiosity-more" href="curiosidades.html">Ver + Ofertas</a>
-  </div>
-
-  <h3 class="curiosity-title" id="dealTitle"></h3>
-  <p class="curiosity-text" id="dealText"></p>
-
-  <div class="curiosity-actions">
-    <button onclick="copyDeal()">📋 Copiar</button>
-    <a id="dealLinkBtn" href="produtos.html">Abrir oferta</a>
-  </div>
-</section>
-
-<section class="section">
-  <div class="section-title">Destaques</div>
-
-  <div class="cards-row">
-    <div class="card">
-      <div class="section-title">Ofertas em destaque</div>
-      <div class="slider" id="ebooksSlider"></div>
-      <div class="slider-controls">
-        <button class="mini-btn" onclick="prevSlide('ebooks')">◀</button>
-        <button class="mini-btn" onclick="nextSlide('ebooks')">▶</button>
+  <!-- HERO + BUSCA NO TOPO -->
+  <section class="hero">
+    <div class="hero-top">
+      <div>
+        <h1>Achadinhos que valem a pena</h1>
+        <p>Encontre produtos de <strong>tudo</strong> (casa, eletrônicos, beleza, moda e mais) com links diretos e rápidos.</p>
       </div>
+      <div class="pill">⚡ Atualizado sempre</div>
     </div>
 
-    <div class="card">
-      <div class="section-title">Mais procurados</div>
-      <div class="slider" id="produtosSlider"></div>
-      <div class="slider-controls">
-        <button class="mini-btn" onclick="prevSlide('produtos')">◀</button>
-        <button class="mini-btn" onclick="nextSlide('produtos')">▶</button>
+    <div class="search-area" role="search" aria-label="Pesquisar produtos">
+      <input
+        id="searchInput"
+        class="search-input"
+        type="text"
+        placeholder="Pesquisar produto (ex: fone bluetooth, air fryer, perfume, teclado...)"
+        autocomplete="off"
+      />
+      <button class="btn" id="searchBtn" type="button">Pesquisar</button>
+    </div>
+
+    <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+      <button class="btn btn-ghost" id="goCategories" type="button">Ver categorias</button>
+      <button class="btn btn-ghost" id="goOffers" type="button">Ver todas as ofertas</button>
+    </div>
+  </section>
+
+  <!-- ACHADINHO DO DIA -->
+  <section class="section">
+    <div class="section-title">
+      Achadinho do dia <small>clique para abrir</small>
+    </div>
+
+    <div class="deal" id="dealBox" style="cursor:pointer;">
+      <div class="deal-left">
+        <div class="deal-badges">
+          <span class="tag hot">🔥 Em destaque</span>
+          <span class="tag">🎯 Oferta do dia</span>
+        </div>
+        <h3 id="dealTitle">Carregador rápido com cabo reforçado</h3>
+        <p id="dealText">Boa escolha para quem quer carregar mais rápido e evitar cabo quebrando toda hora.</p>
+      </div>
+
+      <div class="deal-actions">
+        <button class="btn btn-ghost" id="copyDealBtn" type="button">Copiar</button>
+        <a class="btn" id="dealOpenBtn" href="ofertas.html" style="text-decoration:none; display:inline-block;">Abrir oferta</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="info-card">
-  <h3>Vídeos</h3>
-  <p><strong>Em breve</strong> — reviews rápidos, comparativos, “vale a pena?” e testes honestos dos produtos.</p>
-</section>
+  <!-- CATEGORIAS (área direcionada para outra página) -->
+  <section class="section">
+    <div class="section-title">
+      Categorias <small>vá direto para a página de categorias</small>
+    </div>
 
-<footer>© 2026 Radar De Ofertas</footer>
+    <div class="cat-grid">
+      <a class="cat-card" href="categorias.html#eletronicos">
+        <div class="cat-ico">⚡</div>
+        <div>
+          <p class="cat-name">Eletrônicos</p>
+          <p class="cat-sub">Fones, caixas, acessórios, gadgets</p>
+        </div>
+      </a>
+
+      <a class="cat-card" href="categorias.html#casa">
+        <div class="cat-ico">🏠</div>
+        <div>
+          <p class="cat-name">Casa & Cozinha</p>
+          <p class="cat-sub">Air fryer, organização, utilidades</p>
+        </div>
+      </a>
+
+      <a class="cat-card" href="categorias.html#beleza">
+        <div class="cat-ico">✨</div>
+        <div>
+          <p class="cat-name">Beleza</p>
+          <p class="cat-sub">Perfumes, skincare, cuidados</p>
+        </div>
+      </a>
+
+      <a class="cat-card" href="categorias.html#moda">
+        <div class="cat-ico">👟</div>
+        <div>
+          <p class="cat-name">Moda</p>
+          <p class="cat-sub">Tênis, roupas, acessórios</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- SLIDERS -->
+  <section class="section">
+    <div class="section-title">
+      Destaques <small>gira sozinho • clique para abrir</small>
+    </div>
+
+    <div class="cards-row">
+
+      <!-- SLIDER 1 -->
+      <div class="card">
+        <div class="section-title" style="margin:0 0 10px;">Ofertas em destaque <small>autoplay</small></div>
+        <div class="slider" id="ofertasSlider"></div>
+        <div class="slider-controls">
+          <button class="mini-btn" type="button" id="ofertasPrev">◀</button>
+          <button class="mini-btn" type="button" id="ofertasNext">▶</button>
+        </div>
+      </div>
+
+      <!-- SLIDER 2 -->
+      <div class="card">
+        <div class="section-title" style="margin:0 0 10px;">Mais procurados <small>autoplay</small></div>
+        <div class="slider" id="topSlider"></div>
+        <div class="slider-controls">
+          <button class="mini-btn" type="button" id="topPrev">◀</button>
+          <button class="mini-btn" type="button" id="topNext">▶</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VÍDEOS -->
+  <section class="info">
+    <h3>Vídeos</h3>
+    <p><strong>Em breve</strong> — reviews rápidos, comparativos e “vale a pena?” com achadinhos do dia.</p>
+  </section>
+
+  <footer>© 2026 Radar De Ofertas</footer>
 </main>
 
 <script>
-/* ===== ACHADINHO DO DIA =====
-   Troque os textos e links conforme você for publicando. */
-const deals = [
-  {
-    t: "Promo relâmpago: Fone Bluetooth custo-benefício",
-    d: "Se você quer um fone baratinho pra dia a dia, procura por modelos com 4.5+ estrelas e boa autonomia (6h+).",
-    link: "produtos.html"
-  },
-  {
-    t: "Achadinho de casa: organizadores que mudam tudo",
-    d: "Organizadores transparentes + etiquetas deixam a casa mais prática e dão sensação de “tudo no lugar”.",
-    link: "produtos.html"
-  },
-  {
-    t: "Eletrônicos: carregador rápido com proteção",
-    d: "Prefira carregadores com proteção contra sobrecarga e cabo reforçado. Vale mais do que o mais barato.",
-    link: "produtos.html"
+  // ===== BUSCA (manda para ofertas.html?q=...) =====
+  const searchInput = document.getElementById("searchInput");
+  const searchBtn = document.getElementById("searchBtn");
+  const goCategories = document.getElementById("goCategories");
+  const goOffers = document.getElementById("goOffers");
+
+  function runSearch(){
+    const q = (searchInput.value || "").trim();
+    if(!q) { window.location.href = "ofertas.html"; return; }
+    window.location.href = "ofertas.html?q=" + encodeURIComponent(q);
   }
-];
 
-function dayKey(){
-  const now = new Date();
-  return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
-}
-function hashString(str){
-  let h=0;
-  for(let i=0;i<str.length;i++){
-    h=(h<<5)-h+str.charCodeAt(i);
-    h|=0;
+  searchBtn.addEventListener("click", runSearch);
+  searchInput.addEventListener("keydown", (e)=>{ if(e.key==="Enter") runSearch(); });
+
+  goCategories.addEventListener("click", ()=> window.location.href = "categorias.html");
+  goOffers.addEventListener("click", ()=> window.location.href = "ofertas.html");
+
+  // ===== ACHADINHO DO DIA =====
+  const deals = [
+    {
+      t: "Carregador rápido com cabo reforçado",
+      d: "Boa escolha para quem quer carregar mais rápido e evitar cabo quebrando toda hora.",
+      link: "ofertas.html?q=carregador%20rapido"
+    },
+    {
+      t: "Organizadores transparentes para geladeira",
+      d: "Deixa tudo visível, prático e dá outra cara na cozinha.",
+      link: "ofertas.html?q=organizador%20geladeira"
+    },
+    {
+      t: "Fone bluetooth custo-benefício",
+      d: "Procure boa autonomia e avaliações altas. Ideal pro dia a dia sem gastar muito.",
+      link: "ofertas.html?q=fone%20bluetooth"
+    }
+  ];
+
+  function dayKey(){
+    const now = new Date();
+    return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
   }
-  return Math.abs(h);
-}
-
-const dealIndex = hashString(dayKey()) % deals.length;
-const deal = deals[dealIndex];
-
-document.getElementById("dealTitle").textContent = deal.t;
-document.getElementById("dealText").textContent = deal.d;
-
-const dealBtn = document.getElementById("dealLinkBtn");
-dealBtn.href = deal.link;
-
-function copyDeal(){
-  const txt = `Radar De Ofertas — ${deal.t}\n\n${deal.d}\n\nConfira: ${deal.link}`;
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(txt);
-  }else{
-    const ta=document.createElement("textarea");
-    ta.value=txt; ta.style.position="fixed"; ta.style.left="-9999px";
-    document.body.appendChild(ta);
-    ta.select();
-    try{ document.execCommand("copy"); }catch(e){}
-    document.body.removeChild(ta);
+  function hashString(str){
+    let h=0;
+    for(let i=0;i<str.length;i++){
+      h=(h<<5)-h+str.charCodeAt(i);
+      h|=0;
+    }
+    return Math.abs(h);
   }
-}
 
-/* ===== SLIDERS COM AUTOPLAY =====
-   "ebooks" aqui virou "Ofertas em destaque" (mantive o id pra não quebrar nada) */
-const data={
-  ebooks:[
-    {n:"Smartwatch custo-benefício", i:"oferta_smartwatch.png", d:"Ótimo para dia a dia: passos, notificações e bateria boa.", l:"produtos.html"},
-    {n:"Organizadores para geladeira", i:"oferta_organizadores.png", d:"Deixa tudo visível e organizado — dá outra cara na cozinha.", l:"produtos.html"},
-    {n:"Kit beleza / autocuidado", i:"oferta_beleza.png", d:"Itens úteis pra rotina (sem gastar muito).", l:"produtos.html"},
-    {n:"Lâmpada inteligente", i:"oferta_lampada.png", d:"Controle pelo celular + economia + ambiente mais bonito.", l:"produtos.html"}
-  ],
-  produtos:[
-    {n:"Creatina Monohidratada (exemplo)", i:"creatina-puro-nutrition-300g.jpg", d:"Exemplo de item — troque para seus achados atuais.", l:"produtos.html"},
-    {n:"Ômega 3 (exemplo)", i:"omega-3-vitamina-e-everlasting-90caps.jpg", d:"Exemplo de item — troque conforme suas ofertas.", l:"produtos.html"}
-  ]
-};
+  const dealIndex = hashString(dayKey()) % deals.length;
+  const deal = deals[dealIndex];
 
-const idx={ebooks:0,produtos:0};
+  const dealTitle = document.getElementById("dealTitle");
+  const dealText = document.getElementById("dealText");
+  const dealOpenBtn = document.getElementById("dealOpenBtn");
+  const copyDealBtn = document.getElementById("copyDealBtn");
+  const dealBox = document.getElementById("dealBox");
 
-function render(type){
-  const s=document.getElementById(type+"Slider");
-  const it=data[type][idx[type]];
-  s.innerHTML =
-    `<div class="slide active" onclick="location.href='${it.l}'">
-      <img src="${it.i}" alt="${it.n}" loading="lazy">
-      <div class="name">${it.n}</div>
-      <div class="desc">${it.d}</div>
-    </div>`;
-}
-function nextSlide(t){ idx[t]=(idx[t]+1)%data[t].length; render(t); }
-function prevSlide(t){ idx[t]=(idx[t]-1+data[t].length)%data[t].length; render(t); }
+  dealTitle.textContent = deal.t;
+  dealText.textContent = deal.d;
+  dealOpenBtn.href = deal.link;
+  dealBox.addEventListener("click", (e)=>{
+    if(e.target && (e.target.id === "copyDealBtn")) return;
+    window.location.href = deal.link;
+  });
 
-render("ebooks");
-render("produtos");
-setInterval(()=>nextSlide("ebooks"),3500);
-setInterval(()=>nextSlide("produtos"),3500);
+  copyDealBtn.addEventListener("click", (e)=>{
+    e.stopPropagation();
+    const txt = `Radar De Ofertas — ${deal.t}\n\n${deal.d}\n\nConfira: ${deal.link}`;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt);
+    }else{
+      const ta=document.createElement("textarea");
+      ta.value=txt; ta.style.position="fixed"; ta.style.left="-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      try{ document.execCommand("copy"); }catch(err){}
+      document.body.removeChild(ta);
+    }
+    copyDealBtn.textContent = "Copiado ✅";
+    setTimeout(()=> copyDealBtn.textContent="Copiar", 1200);
+  });
+
+  // ===== SLIDERS (autoplay + clique) =====
+  const data = {
+    ofertas: [
+      { n:"Fone bluetooth (promo)", i:"oferta_fone.png", d:"Boa autonomia e custo-benefício.", l:"ofertas.html?q=fone%20bluetooth" },
+      { n:"Air Fryer (achado)", i:"oferta_airfryer.png", d:"Pra quem quer praticidade na cozinha.", l:"ofertas.html?q=air%20fryer" },
+      { n:"Perfume importado (oferta)", i:"oferta_perfume.png", d:"Opção popular e bem avaliada.", l:"ofertas.html?q=perfume" },
+      { n:"Kit organização (casa)", i:"oferta_organizacao.png", d:"Deixa tudo mais prático e bonito.", l:"ofertas.html?q=organizador" }
+    ],
+    top: [
+      { n:"Teclado mecânico", i:"top_teclado.png", d:"Conforto e desempenho para digitar.", l:"ofertas.html?q=teclado%20mecanico" },
+      { n:"Mouse sem fio", i:"top_mouse.png", d:"Mobilidade e boa pegada.", l:"ofertas.html?q=mouse%20sem%20fio" },
+      { n:"Lâmpada inteligente", i:"top_lampada.png", d:"Controle pelo celular e ambiente top.", l:"ofertas.html?q=lampada%20inteligente" },
+      { n:"Organizador multiuso", i:"top_organizador.png", d:"Serve pra casa toda, muito útil.", l:"ofertas.html?q=organizador%20multiuso" }
+    ]
+  };
+
+  const idx = { ofertas: 0, top: 0 };
+
+  function render(type, mountId){
+    const mount = document.getElementById(mountId);
+    const it = data[type][idx[type]];
+    mount.innerHTML = `
+      <div class="slide active" role="button" tabindex="0" aria-label="${it.n}">
+        <img src="${it.i}" alt="${it.n}" loading="lazy">
+        <div class="name">${it.n}</div>
+        <div class="desc">${it.d}</div>
+      </div>
+    `;
+    const slide = mount.querySelector(".slide");
+    slide.addEventListener("click", ()=> window.location.href = it.l);
+    slide.addEventListener("keydown", (e)=>{ if(e.key==="Enter") window.location.href = it.l; });
+  }
+
+  function next(type, mountId){
+    idx[type] = (idx[type] + 1) % data[type].length;
+    render(type, mountId);
+  }
+  function prev(type, mountId){
+    idx[type] = (idx[type] - 1 + data[type].length) % data[type].length;
+    render(type, mountId);
+  }
+
+  // init
+  render("ofertas", "ofertasSlider");
+  render("top", "topSlider");
+
+  // autoplay
+  setInterval(()=> next("ofertas","ofertasSlider"), 3500);
+  setInterval(()=> next("top","topSlider"), 3500);
+
+  // buttons
+  document.getElementById("ofertasNext").addEventListener("click", ()=> next("ofertas","ofertasSlider"));
+  document.getElementById("ofertasPrev").addEventListener("click", ()=> prev("ofertas","ofertasSlider"));
+  document.getElementById("topNext").addEventListener("click", ()=> next("top","topSlider"));
+  document.getElementById("topPrev").addEventListener("click", ()=> prev("top","topSlider"));
 </script>
 
 </body>
