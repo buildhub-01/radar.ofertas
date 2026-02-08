@@ -288,6 +288,7 @@
       flex-direction:column;
       min-height:290px;
     }
+
     .thumb{
       height:160px;
       background:
@@ -301,6 +302,18 @@
       border-bottom:1px solid rgba(255,255,255,0.10);
       position:relative;
     }
+
+    /* Thumb com imagem real */
+    .thumb-img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      border-radius:14px;
+      background:rgba(0,0,0,0.12);
+      border:1px solid rgba(255,255,255,0.10);
+      padding:10px;
+    }
+
     .badge{
       position:absolute;
       top:10px;
@@ -312,6 +325,7 @@
       color:#061018;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
     }
+
     .placeholder{
       width:100%;
       height:100%;
@@ -350,6 +364,27 @@
       line-height:1.35;
       font-weight:700;
     }
+
+    /* CTA real (quando tem link) */
+    .cta-link{
+      margin-top:auto;
+      display:block;
+      text-align:center;
+      text-decoration:none;
+      padding:12px 12px;
+      border-radius:14px;
+      font-weight:900;
+      background: linear-gradient(135deg, rgba(0,224,255,0.18), rgba(39,255,138,0.16));
+      border:1px solid rgba(255,255,255,0.14);
+      color:#ffffff;
+    }
+    .cta-link:hover{
+      filter:brightness(1.05);
+      transform: translateY(-1px);
+      transition: transform .12s ease, filter .12s ease;
+    }
+
+    /* CTA em breve */
     .cta{
       margin-top:auto;
       display:block;
@@ -409,7 +444,7 @@
       <div class="search-area">
         <div class="searchbox" aria-label="Pesquisar produtos">
           <span class="icon">🔎</span>
-          <input id="searchInput" type="text" placeholder="Pesquisar produto... (ex: fone, airfryer, tênis, smartwatch)" autocomplete="off" />
+          <input id="searchInput" type="text" placeholder="Pesquisar produto... (ex: mochila, fone, airfryer, tênis)" autocomplete="off" />
         </div>
 
         <div class="cat-wrap">
@@ -419,9 +454,15 @@
 
           <div class="cat-menu" id="catMenu" role="menu" aria-label="Categorias">
             <div class="cat-title">Escolha uma categoria</div>
+
             <button class="cat-item" type="button" data-category="Todos" role="menuitem">
               Todos <small>(ver tudo)</small>
             </button>
+
+            <button class="cat-item" type="button" data-category="Volta às aulas" role="menuitem">
+              Volta às aulas <small>Atual</small>
+            </button>
+
             <button class="cat-item" type="button" data-category="Eletrônicos" role="menuitem">
               Eletrônicos <small>Em breve</small>
             </button>
@@ -451,8 +492,8 @@
     <section class="hero" aria-label="Introdução">
       <h1>Radar De Ofertas</h1>
       <p>
-        Aqui você vai encontrar promoções e achadinhos selecionados.  
-        Por enquanto, os produtos estão como <b>“Em breve”</b> — vou adicionar aos poucos.
+        Aqui você vai encontrar promoções e achadinhos selecionados.
+        Vou adicionando aos poucos — use a pesquisa e as categorias para encontrar rápido.
       </p>
 
       <div class="meta-row">
@@ -461,9 +502,29 @@
       </div>
     </section>
 
-    <!-- Produtos (Em breve) -->
+    <!-- Produtos -->
     <section class="grid" id="grid" aria-label="Produtos em destaque">
-      <!-- 12 placeholders para começar (você pode aumentar depois) -->
+
+      <!-- PRODUTO 1 (Shopee) -->
+      <article
+        class="card"
+        data-title="material escolar completo com sem estojo escolar feminino mochila escolar feminina volta as aulas"
+        data-category="Volta às aulas"
+      >
+        <div class="thumb">
+          <span class="badge">SHOPEE</span>
+          <img class="thumb-img" src="produto 1.png" alt="Material Escolar Completo - Mochila Escolar Feminina" loading="lazy">
+        </div>
+        <div class="content">
+          <h3 class="title">Material Escolar Completo (Mochila Escolar Feminina • Volta às aulas)</h3>
+          <p class="muted">Clique para abrir o produto na Shopee. (Preço pode variar)</p>
+          <a class="cta-link" href="https://s.shopee.com.br/6pv6HiHr52" target="_blank" rel="noopener">
+            Ver na Shopee
+          </a>
+        </div>
+      </article>
+
+      <!-- PLACEHOLDERS (Em breve) -->
       <article class="card" data-title="em breve" data-category="Todos">
         <div class="thumb">
           <span class="badge">EM BREVE</span>
@@ -596,17 +657,6 @@
         </div>
       </article>
 
-      <article class="card" data-title="em breve" data-category="Todos">
-        <div class="thumb">
-          <span class="badge">EM BREVE</span>
-          <div class="placeholder">Produto em breve</div>
-        </div>
-        <div class="content">
-          <h3 class="title">Em breve</h3>
-          <p class="muted">Vou adicionar produtos aos poucos aqui.</p>
-          <span class="cta">Em breve</span>
-        </div>
-      </article>
     </section>
 
     <footer>© 2026 Radar De Ofertas • Página principal</footer>
