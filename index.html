@@ -1,246 +1,231 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Radar De Ofertas | Achadinhos e Promoções</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Radar De Ofertas | Achadinhos e Promoções</title>
 
-  <style>
-    :root{
-      --bg1:#0b0f14;
-      --bg2:#0c1b22;
-      --panel:#0f1620;
-      --card:#101a26;
-      --card2:#0e1722;
-      --text:#eaf0ff;
-      --muted:#a8b3c7;
-      --border:rgba(255,255,255,0.10);
+<style>
+:root{
+  --bg1:#f2f7f6;
+  --bg2:#e8f2ef;
+  --card:#ffffff;
+  --text:#1f2933;
+  --muted:#6b7280;
+  --border:rgba(0,0,0,0.08);
 
-      --accent:#00e0ff;
-      --accent2:#27ff8a;
-      --accent3:#ffd166;
-    }
+  --accent:#2dd4bf;
+  --accent2:#60a5fa;
+  --accent3:#facc15;
+}
 
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: Arial, sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(1200px 700px at 20% 0%, rgba(0,224,255,0.18), transparent 55%),
-        radial-gradient(900px 600px at 80% 10%, rgba(39,255,138,0.16), transparent 55%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-      min-height:100vh;
-    }
+*{ box-sizing:border-box; }
 
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:999;
-      background:rgba(11,15,20,0.78);
-      backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--border);
-    }
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  color:var(--text);
+  background:linear-gradient(180deg,var(--bg1),var(--bg2));
+  min-height:100vh;
+}
 
-    .topbar-inner{
-      max-width:1200px;
-      margin:0 auto;
-      padding:12px 14px;
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
+/* TOPO */
+.topbar{
+  position:sticky;
+  top:0;
+  background:#ffffffee;
+  border-bottom:1px solid var(--border);
+}
+.topbar-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:14px;
+  display:flex;
+  justify-content:center;
+}
+.searchbox{
+  width:100%;
+  max-width:600px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding:12px 14px;
+  border-radius:14px;
+  background:#f9fafb;
+  border:1px solid var(--border);
+}
+.searchbox input{
+  flex:1;
+  border:none;
+  outline:none;
+  background:transparent;
+}
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .brand img{
-      width:42px;
-      height:42px;
-      border-radius:12px;
-      padding:6px;
-      background:rgba(0,0,0,0.25);
-    }
+/* CONTEÚDO */
+.wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:20px 14px 80px;
+}
 
-    .search-area{
-      flex:1;
-      display:flex;
-      gap:10px;
-    }
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+@media(max-width:700px){
+  .grid{ grid-template-columns:1fr; }
+}
 
-    .searchbox{
-      flex:1;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:12px;
-      border-radius:14px;
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.12);
-    }
+/* CARD */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+}
 
-    .searchbox input{
-      width:100%;
-      border:none;
-      outline:none;
-      background:transparent;
-      color:#fff;
-    }
+/* IMAGEM */
+.thumb{
+  height:240px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px;
+  background:linear-gradient(135deg,#e6fffa,#eef2ff);
+}
+.thumb-img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
 
-    .cat-btn{
-      border:none;
-      padding:12px 14px;
-      border-radius:14px;
-      font-weight:900;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      cursor:pointer;
-    }
+/* CONTEÚDO */
+.content{
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  flex:1;
+  text-align:center;
+}
 
-    .cat-menu{
-      position:absolute;
-      right:0;
-      top:52px;
-      width:260px;
-      background:#0f1620;
-      border-radius:16px;
-      padding:10px;
-      display:none;
-    }
-    .cat-menu.open{ display:block; }
+/* TÍTULO */
+.title{
+  font-size:16px;
+  font-weight:900;
+  line-height:1.3;
+  margin:0;
 
-    .wrap{
-      max-width:1200px;
-      margin:0 auto;
-      padding:16px 14px 70px;
-    }
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  min-height:42px;
+}
 
-    .hero{
-      background:rgba(255,255,255,0.06);
-      border-radius:18px;
-      padding:16px;
-    }
+/* DESCRIÇÃO */
+.desc{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.4;
+}
 
-    .grid{
-      margin-top:16px;
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap:14px;
-    }
+/* AVALIAÇÃO */
+.rating{
+  font-size:13px;
+  font-weight:900;
+  color:#111827;
+}
+.rating .stars{
+  color:var(--accent3);
+  margin-right:4px;
+}
+.rating small{
+  display:block;
+  font-weight:700;
+  color:var(--muted);
+  margin-top:2px;
+}
 
-    .card{
-      background:rgba(16,26,38,0.72);
-      border-radius:18px;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-    }
-
-    .thumb{
-      height:160px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:12px;
-    }
-
-    .thumb-img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      border-radius:14px;
-    }
-
-    .badge{
-      position:absolute;
-      top:10px;
-      left:10px;
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:900;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color:#061018;
-    }
-
-    .content{
-      padding:14px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      flex:1;
-    }
-
-    .cta-link{
-      margin-top:auto;
-      text-align:center;
-      padding:12px;
-      border-radius:14px;
-      text-decoration:none;
-      font-weight:900;
-      background:rgba(255,255,255,0.06);
-      color:#fff;
-    }
-  </style>
+/* BOTÃO */
+.cta-link{
+  margin-top:auto;
+  text-decoration:none;
+  padding:12px;
+  border-radius:14px;
+  font-weight:900;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#ffffff;
+  display:block;
+}
+</style>
 </head>
 
 <body>
 
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="brand">
-      <img src="Logotipo.png" alt="Radar De Ofertas">
-    </div>
-
-    <div class="search-area">
-      <div class="searchbox">
-        🔎
-        <input id="searchInput" type="text" placeholder="Pesquisar produto...">
-      </div>
-      <button class="cat-btn">☰ Categorias</button>
+    <div class="searchbox">
+      🔎
+      <input type="text" placeholder="Pesquisar produto...">
     </div>
   </div>
 </div>
 
 <main class="wrap">
 
-  <section class="hero">
-    <h1>Radar De Ofertas</h1>
-    <p>Achadinhos e promoções selecionadas.</p>
-  </section>
+<section class="grid">
 
-  <section class="grid" id="grid">
+<!-- PRODUTO 1 -->
+<article class="card">
+  <div class="thumb">
+    <img class="thumb-img" src="produto 1.png" alt="Material Escolar Completo">
+  </div>
+  <div class="content">
+    <h3 class="title">
+      Material Escolar Completo com Mochila Escolar Feminina
+    </h3>
+    <p class="desc">
+      Ideal para volta às aulas, prático e organizado.
+    </p>
+    <div class="rating">
+      <span class="stars">★★★★★</span> 4.8
+      <small>489 avaliações</small>
+    </div>
+    <a class="cta-link" href="https://s.shopee.com.br/4VXBcDAb60" target="_blank">
+      Ver na Shopee
+    </a>
+  </div>
+</article>
 
-    <!-- PRODUTO 1 -->
-    <article class="card" data-title="material escolar mochila feminina" data-category="Volta às aulas">
-      <div class="thumb">
-        <span class="badge">SHOPEE</span>
-        <img class="thumb-img" src="produto 1.png" alt="Material Escolar">
-      </div>
-      <div class="content">
-        <h3>Material Escolar Completo</h3>
-        <p>Mochila Escolar Feminina</p>
-        <a class="cta-link" href="https://s.shopee.com.br/4VXBcDAb60" target="_blank">Ver na Shopee</a>
-      </div>
-    </article>
+<!-- PRODUTO 2 -->
+<article class="card">
+  <div class="thumb">
+    <img class="thumb-img" src="produto 2.png" alt="Aspirador de Pó Portátil">
+  </div>
+  <div class="content">
+    <h3 class="title">
+      Aspirador de Pó Portátil Recarregável para Casa
+    </h3>
+    <p class="desc">
+      Limpeza rápida, potente e sem fio para o dia a dia.
+    </p>
+    <div class="rating">
+      <span class="stars">★★★★★</span> 4.6
+      <small>2,7 mil avaliações • 6 mil+ vendidos</small>
+    </div>
+    <a class="cta-link" href="https://s.shopee.com.br/5VPip0MckJ" target="_blank">
+      Ver na Shopee
+    </a>
+  </div>
+</article>
 
-    <!-- PRODUTO 2 -->
-    <article class="card" data-title="aspirador de pó portátil limpeza casa" data-category="Casa & Cozinha">
-      <div class="thumb">
-        <span class="badge">SHOPEE</span>
-        <img class="thumb-img" src="produto 2.png" alt="Aspirador de Pó Portátil">
-      </div>
-      <div class="content">
-        <h3>Aspirador de Pó Portátil Recarregável</h3>
-        <p>Mini limpeza de casa • Potente e prático</p>
-        <a class="cta-link" href="https://s.shopee.com.br/5VPip0MckJ" target="_blank">
-          Ver na Shopee
-        </a>
-      </div>
-    </article>
-
-  </section>
+</section>
 
 </main>
 
