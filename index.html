@@ -89,19 +89,18 @@ body{
   box-shadow:0 10px 30px rgba(0,0,0,0.06);
 }
 
-/* IMAGEM */
+/* VÍDEO */
 .thumb{
   height:240px;
+  background:linear-gradient(135deg,#e6fffa,#eef2ff);
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:12px;
-  background:linear-gradient(135deg,#e6fffa,#eef2ff);
 }
-.thumb-img{
+.thumb video{
   width:100%;
   height:100%;
-  object-fit:contain;
+  object-fit:cover;
 }
 
 /* CONTEÚDO */
@@ -120,7 +119,6 @@ body{
   font-weight:900;
   line-height:1.3;
   margin:0;
-
   display:-webkit-box;
   -webkit-line-clamp:2;
   -webkit-box-orient:vertical;
@@ -139,17 +137,12 @@ body{
 .rating{
   font-size:13px;
   font-weight:900;
-  color:#111827;
 }
-.rating .stars{
-  color:var(--accent3);
-  margin-right:4px;
-}
+.rating .stars{ color:var(--accent3); }
 .rating small{
   display:block;
   font-weight:700;
   color:var(--muted);
-  margin-top:2px;
 }
 
 /* BOTÃO */
@@ -161,7 +154,6 @@ body{
   font-weight:900;
   background:linear-gradient(135deg,var(--accent),var(--accent2));
   color:#ffffff;
-  display:block;
 }
 </style>
 </head>
@@ -181,17 +173,17 @@ body{
 
 <section class="grid">
 
-<!-- PRODUTO 1 -->
+<!-- PRODUTO 1 – KIT ESCOLAR -->
 <article class="card">
   <div class="thumb">
-    <img class="thumb-img" src="produto 1.png" alt="Material Escolar Completo">
+    <video src="kit escolar.mp4" autoplay muted loop playsinline></video>
   </div>
   <div class="content">
     <h3 class="title">
       Material Escolar Completo com Mochila Escolar Feminina
     </h3>
     <p class="desc">
-      Ideal para volta às aulas, prático e organizado.
+      Ideal para volta às aulas, organizado e prático.
     </p>
     <div class="rating">
       <span class="stars">★★★★★</span> 4.8
@@ -203,14 +195,14 @@ body{
   </div>
 </article>
 
-<!-- PRODUTO 2 -->
+<!-- PRODUTO 2 – ASPIRADOR -->
 <article class="card">
   <div class="thumb">
-    <img class="thumb-img" src="produto 2.png" alt="Aspirador de Pó Portátil">
+    <video src="aspirador_portatil.mp4" autoplay muted loop playsinline></video>
   </div>
   <div class="content">
     <h3 class="title">
-      Aspirador de Pó Portátil Recarregável para Casa
+      Aspirador de Pó Portátil Recarregável
     </h3>
     <p class="desc">
       Limpeza rápida, potente e sem fio para o dia a dia.
