@@ -7,44 +7,41 @@
 
 <style>
   :root{
-    /* IDENTIDADE */
-    --bg:#0b0f14;
-    --panel:#0f1620;
-    --panel2:#0c121a;
-    --card:#121b27;
-    --card2:#0f1722;
-    --text:#eaf0ff;
-    --muted:#a8b3c7;
-    --border:rgba(255,255,255,0.08);
+    /* NOVA IDENTIDADE (mais viva) */
+    --bg1:#08c7ff;          /* ciano vivo */
+    --bg2:#7c3aed;          /* roxo vivo */
+    --panel:rgba(255,255,255,0.14);
+    --panel2:rgba(255,255,255,0.10);
+    --card:rgba(255,255,255,0.16);
+    --text:#071018;         /* texto escuro p/ fundo claro */
+    --muted:rgba(7,16,24,0.70);
+    --border:rgba(255,255,255,0.35);
 
-    /* Acentos */
-    --accent:#00e0ff;   /* ciano */
-    --accent2:#7c3aed;  /* roxo */
-    --ok:#22c55e;       /* verde */
-    --warn:#f59e0b;     /* amarelo */
-    --danger:#ef4444;   /* vermelho */
+    --accent:#00bfff;
+    --accent2:#7c3aed;
+    --shadow:0 18px 40px rgba(0,0,0,0.18);
   }
 
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
+
   body{
     margin:0;
     font-family: Arial, sans-serif;
     background:
-      radial-gradient(1200px 600px at 10% 0%, rgba(0,224,255,0.12), transparent 60%),
-      radial-gradient(1200px 600px at 90% 10%, rgba(124,58,237,0.10), transparent 60%),
-      var(--bg);
+      radial-gradient(900px 520px at 12% 0%, rgba(255,255,255,0.28), transparent 60%),
+      radial-gradient(1000px 520px at 90% 10%, rgba(255,255,255,0.22), transparent 60%),
+      linear-gradient(135deg, var(--bg1), var(--bg2));
     color:var(--text);
   }
 
-  /* ===== WRAP ===== */
   .wrap{
     max-width:1200px;
     margin:auto;
     padding:18px 14px 60px;
   }
 
-  /* ===== TOP BRAND (sem menu) ===== */
+  /* ===== TOP BRAND ===== */
   .brandbar{
     display:flex;
     align-items:center;
@@ -63,18 +60,19 @@
     gap:10px;
   }
   .logo-badge{
-    width:36px; height:36px;
-    border-radius:12px;
-    background:linear-gradient(135deg, rgba(0,224,255,0.22), rgba(124,58,237,0.22));
-    border:1px solid var(--border);
+    width:38px; height:38px;
+    border-radius:14px;
+    background:linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.28));
+    border:1px solid rgba(255,255,255,0.55);
     display:flex;
     align-items:center;
     justify-content:center;
     font-weight:900;
-    color:var(--text);
+    color:#071018;
+    box-shadow: var(--shadow);
   }
   .logo span{
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    background: linear-gradient(90deg, #071018, rgba(7,16,24,0.70));
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
@@ -86,22 +84,37 @@
     gap:8px;
     padding:8px 12px;
     border-radius:999px;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,0.04);
-    color:var(--muted);
+    border:1px solid rgba(255,255,255,0.55);
+    background:rgba(255,255,255,0.22);
+    color:rgba(7,16,24,0.75);
     font-weight:900;
     font-size:12px;
     white-space:nowrap;
+    box-shadow: var(--shadow);
   }
 
   /* ===== HERO ===== */
   .hero{
-    background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-    border:1px solid var(--border);
+    position:relative;
+    border:1px solid rgba(255,255,255,0.45);
     border-radius:18px;
     padding:18px;
-    box-shadow:0 20px 40px rgba(0,0,0,0.35);
+    background:linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.12));
+    box-shadow: var(--shadow);
+    overflow:hidden;
   }
+
+  /* opcional: imagem translúcida no fundo do hero */
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: url("radar-watermark.png") center/320px no-repeat;
+    opacity:0.10;
+    pointer-events:none;
+    filter: saturate(1.1);
+  }
+  .hero > *{ position:relative; z-index:1; }
 
   .hero-top{
     display:flex;
@@ -124,27 +137,28 @@
     max-width:760px;
   }
 
-  /* ===== SEARCH TOP ===== */
-  .search-area{
+  /* ===== SEARCH ROW (categoria à esquerda da pesquisa) ===== */
+  .search-row{
     margin-top:14px;
     display:grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto 1fr auto;
     gap:10px;
+    align-items:stretch;
   }
 
   .search-input{
     width:100%;
     border-radius:14px;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.55);
+    background:rgba(255,255,255,0.22);
     color:var(--text);
     padding:14px 14px;
-    font-weight:800;
+    font-weight:900;
     outline:none;
   }
   .search-input::placeholder{
-    color:rgba(234,240,255,0.55);
-    font-weight:700;
+    color:rgba(7,16,24,0.55);
+    font-weight:800;
   }
 
   .btn{
@@ -153,27 +167,99 @@
     border-radius:14px;
     padding:14px 16px;
     font-weight:900;
-    color:#071018;
-    background:linear-gradient(90deg, var(--accent), rgba(0,224,255,0.75));
-    box-shadow:0 10px 24px rgba(0,224,255,0.15);
+    color:#ffffff;
+    background:linear-gradient(90deg, rgba(7,16,24,0.90), rgba(7,16,24,0.70));
+    box-shadow: var(--shadow);
     white-space:nowrap;
   }
   .btn:hover{ filter:brightness(1.05); }
 
   .btn-ghost{
-    background:rgba(255,255,255,0.05);
-    color:var(--text);
-    border:1px solid var(--border);
-    box-shadow:none;
+    background:rgba(255,255,255,0.18);
+    color:rgba(7,16,24,0.90);
+    border:1px solid rgba(255,255,255,0.55);
+    box-shadow: var(--shadow);
   }
   .btn-ghost:hover{
-    background:rgba(255,255,255,0.07);
-    border-color:rgba(124,58,237,0.35);
+    background:rgba(255,255,255,0.26);
   }
 
-  @media (max-width:520px){
-    .search-area{ grid-template-columns:1fr; }
+  /* ===== DROPDOWN CATEGORIAS ===== */
+  .drop{
+    position:relative;
+  }
+  .drop-btn{
+    height:100%;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:0 14px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,0.55);
+    background:rgba(255,255,255,0.22);
+    font-weight:900;
+    color:rgba(7,16,24,0.95);
+    cursor:pointer;
+    box-shadow: var(--shadow);
+    user-select:none;
+    white-space:nowrap;
+  }
+  .drop-btn:hover{ background:rgba(255,255,255,0.28); }
+  .drop-btn .mini{
+    width:32px; height:32px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.55);
+    background:rgba(255,255,255,0.30);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+  }
+  .drop-btn .chev{ opacity:.8; }
+
+  .drop-menu{
+    position:absolute;
+    top:calc(100% + 10px);
+    left:0;
+    min-width:240px;
+    max-width:320px;
+    background:rgba(255,255,255,0.92);
+    border:1px solid rgba(7,16,24,0.10);
+    border-radius:16px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.25);
+    padding:8px;
+    display:none;
+    z-index:50;
+    overflow:hidden;
+  }
+  .drop.open .drop-menu{ display:block; }
+
+  .drop-item{
+    width:100%;
+    border:none;
+    background:transparent;
+    padding:12px 12px;
+    border-radius:12px;
+    cursor:pointer;
+    text-align:left;
+    font-weight:900;
+    color:#071018;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+  }
+  .drop-item:hover{ background:rgba(8,199,255,0.14); }
+  .drop-item.active{ background:rgba(124,58,237,0.14); }
+  .drop-item small{
+    font-weight:900;
+    opacity:.65;
+  }
+
+  @media (max-width:720px){
     .brandbar{ flex-direction:column; align-items:flex-start; }
+    .search-row{ grid-template-columns: 1fr; }
+    .drop-menu{ position:relative; top:10px; left:0; min-width:unset; max-width:unset; }
   }
 
   /* ===== SECTIONS ===== */
@@ -186,104 +272,12 @@
     margin:0 0 10px;
     font-weight:900;
     font-size:18px;
+    color:#071018;
   }
   .section-title small{
-    color:var(--muted);
-    font-weight:800;
-    font-size:12px;
-  }
-
-  /* ===== ACCORDION CATEGORIAS ===== */
-  .accordion{
-    border:1px solid var(--border);
-    border-radius:18px;
-    background:rgba(255,255,255,0.04);
-    box-shadow:0 18px 35px rgba(0,0,0,0.25);
-    overflow:hidden;
-  }
-  .acc-head{
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:14px 14px;
-    cursor:pointer;
-    border:none;
-    background:transparent;
-    color:var(--text);
-    font-weight:900;
-    font-size:14px;
-  }
-  .acc-head:hover{
-    background:rgba(0,224,255,0.06);
-  }
-  .acc-left{
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .acc-ico{
-    width:38px; height:38px;
-    border-radius:14px;
-    border:1px solid var(--border);
-    background:linear-gradient(135deg, rgba(0,224,255,0.14), rgba(124,58,237,0.14));
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:900;
-    font-size:16px;
-  }
-  .acc-sub{
-    color:var(--muted);
-    font-weight:800;
-    font-size:12px;
-    margin-top:3px;
-  }
-  .chev{
-    transition: transform .2s ease;
-    opacity:.9;
-  }
-  .accordion.open .chev{ transform: rotate(180deg); }
-
-  .acc-body{
-    display:none;
-    padding:0 14px 14px;
-    border-top:1px solid var(--border);
-  }
-  .accordion.open .acc-body{ display:block; }
-
-  .chips{
-    margin-top:12px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-  }
-  .chip{
-    border:1px solid var(--border);
-    background:rgba(255,255,255,0.04);
-    color:var(--text);
+    color:rgba(7,16,24,0.70);
     font-weight:900;
     font-size:12px;
-    padding:10px 12px;
-    border-radius:999px;
-    cursor:pointer;
-    user-select:none;
-  }
-  .chip:hover{
-    border-color:rgba(0,224,255,0.25);
-    background:rgba(0,224,255,0.08);
-  }
-  .chip.active{
-    border-color:rgba(0,224,255,0.40);
-    background:rgba(0,224,255,0.14);
-  }
-
-  .acc-actions{
-    margin-top:12px;
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
   }
 
   /* ===== GRID DE PRODUTOS ===== */
@@ -297,40 +291,38 @@
   @media (max-width:520px){ .grid{ grid-template-columns: 1fr; } }
 
   .p-card{
-    border:1px solid var(--border);
+    border:1px solid rgba(255,255,255,0.50);
     border-radius:16px;
-    background:rgba(255,255,255,0.04);
-    box-shadow:0 18px 35px rgba(0,0,0,0.25);
+    background:rgba(255,255,255,0.18);
+    box-shadow: var(--shadow);
     overflow:hidden;
     text-decoration:none;
-    color:var(--text);
+    color:#071018;
     display:flex;
     flex-direction:column;
     min-height:340px;
-    transition: transform .18s ease, border-color .18s ease, background .18s ease;
-    cursor:pointer;
+    transition: transform .18s ease, filter .18s ease;
   }
   .p-card:hover{
     transform: translateY(-2px);
-    border-color:rgba(0,224,255,0.25);
-    background:rgba(0,224,255,0.06);
+    filter: brightness(1.02);
   }
 
   .p-thumb{
     height:180px;
-    background:rgba(0,0,0,0.18);
+    background:rgba(255,255,255,0.18);
     display:flex;
     align-items:center;
     justify-content:center;
     position:relative;
-    border-bottom:1px solid var(--border);
+    border-bottom:1px solid rgba(255,255,255,0.45);
   }
   .p-thumb img{
     width:100%;
     height:100%;
     object-fit:contain;
     padding:14px;
-    filter: drop-shadow(0 18px 22px rgba(0,0,0,0.35));
+    filter: drop-shadow(0 18px 22px rgba(0,0,0,0.25));
   }
 
   .p-badges{
@@ -347,20 +339,20 @@
     gap:8px;
     padding:7px 10px;
     border-radius:999px;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,0.04);
-    color:var(--text);
+    border:1px solid rgba(255,255,255,0.60);
+    background:rgba(255,255,255,0.28);
+    color:#071018;
     font-weight:900;
     font-size:12px;
     white-space:nowrap;
   }
   .tag.hot{
-    background:rgba(0,224,255,0.10);
-    border-color:rgba(0,224,255,0.25);
+    background:rgba(8,199,255,0.28);
+    border-color:rgba(8,199,255,0.35);
   }
   .tag.new{
-    background:rgba(124,58,237,0.10);
-    border-color:rgba(124,58,237,0.25);
+    background:rgba(124,58,237,0.20);
+    border-color:rgba(124,58,237,0.30);
   }
 
   .p-body{
@@ -378,7 +370,7 @@
   }
   .p-desc{
     margin:0;
-    color:var(--muted);
+    color:rgba(7,16,24,0.70);
     font-size:12px;
     line-height:1.4;
   }
@@ -390,41 +382,41 @@
     align-items:center;
     gap:10px;
     padding-top:10px;
-    border-top:1px solid rgba(255,255,255,0.06);
+    border-top:1px solid rgba(7,16,24,0.10);
   }
   .p-cat{
     font-weight:900;
     font-size:12px;
-    color:rgba(234,240,255,0.85);
-    opacity:.9;
+    color:rgba(7,16,24,0.85);
+    opacity:.95;
   }
   .p-open{
     font-weight:900;
     font-size:12px;
     padding:8px 10px;
     border-radius:12px;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(7,16,24,0.12);
+    background:rgba(255,255,255,0.35);
   }
 
-  /* ===== EMPTY STATE ===== */
   .empty{
     margin-top:10px;
-    border:1px dashed rgba(255,255,255,0.14);
-    background:rgba(255,255,255,0.03);
+    border:1px dashed rgba(255,255,255,0.75);
+    background:rgba(255,255,255,0.20);
     border-radius:16px;
     padding:14px;
-    color:var(--muted);
-    font-weight:800;
+    color:rgba(7,16,24,0.75);
+    font-weight:900;
     line-height:1.45;
+    box-shadow: var(--shadow);
   }
 
-  /* ===== FOOTER ===== */
   footer{
     text-align:center;
-    color:rgba(234,240,255,0.55);
+    color:rgba(7,16,24,0.70);
     font-size:12px;
     margin-top:18px;
+    font-weight:900;
   }
 </style>
 </head>
@@ -432,7 +424,6 @@
 <body>
 <main class="wrap">
 
-  <!-- TOPO (sem menu) -->
   <div class="brandbar">
     <div class="logo">
       <div class="logo-badge">↗</div>
@@ -441,19 +432,29 @@
     <div class="pill">⚡ Atualizado sempre</div>
   </div>
 
-  <!-- HERO + BUSCA -->
-  <section class="hero" aria-label="Busca e filtros">
+  <section class="hero" aria-label="Busca e categorias">
     <div class="hero-top">
       <div>
         <h1>Achadinhos que valem a pena</h1>
         <p>
-          Encontre produtos de <strong>tudo</strong> (casa, eletrônicos, beleza, moda e mais) com links diretos.
-          Use a busca e filtre por categorias para achar rápido.
+          Uma página única, rápida e direta: escolha uma <strong>categoria</strong> e pesquise por palavra.
+          Clique no produto e abra o link.
         </p>
       </div>
     </div>
 
-    <div class="search-area" role="search" aria-label="Pesquisar produtos">
+    <!-- CATEGORIA (esquerda) + PESQUISA (meio) + BOTÃO (direita) -->
+    <div class="search-row">
+      <div class="drop" id="catDrop">
+        <div class="drop-btn" id="catBtn" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false">
+          <div class="mini">☰</div>
+          <div id="catLabel">Categoria: Tudo</div>
+          <div class="chev">▾</div>
+        </div>
+
+        <div class="drop-menu" id="catMenu" role="menu" aria-label="Categorias"></div>
+      </div>
+
       <input
         id="searchInput"
         class="search-input"
@@ -461,54 +462,25 @@
         placeholder="Pesquisar produto (ex: fone bluetooth, air fryer, perfume, teclado...)"
         autocomplete="off"
       />
+
       <button class="btn" id="searchBtn" type="button">Pesquisar</button>
     </div>
 
     <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-      <button class="btn btn-ghost" id="toggleCategories" type="button">Categorias</button>
-      <button class="btn btn-ghost" id="clearFilters" type="button">Limpar filtros</button>
-      <button class="btn btn-ghost" id="scrollProducts" type="button">Ver produtos</button>
+      <button class="btn btn-ghost" id="clearFilters" type="button">Limpar</button>
     </div>
   </section>
 
-  <!-- CATEGORIAS (aba expande + filtra) -->
-  <section class="section" aria-label="Categorias">
-    <div class="section-title">
-      Categorias <small>clique para expandir e filtrar</small>
-    </div>
-
-    <div class="accordion" id="catAccordion">
-      <button class="acc-head" id="accHead" type="button" aria-expanded="false">
-        <div class="acc-left">
-          <div class="acc-ico">🎛️</div>
-          <div>
-            <div>Filtrar por categoria</div>
-            <div class="acc-sub">Selecione uma categoria para ver só os produtos dela</div>
-          </div>
-        </div>
-        <div class="chev">▾</div>
-      </button>
-
-      <div class="acc-body" id="accBody">
-        <div class="chips" id="categoryChips"></div>
-
-        <div class="acc-actions">
-          <button class="btn btn-ghost" id="showAllBtn" type="button">Mostrar tudo</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUTOS -->
   <section class="section" aria-label="Produtos" id="produtos">
     <div class="section-title">
       Produtos <small>clique em um card para abrir</small>
     </div>
 
     <div class="grid" id="productsGrid"></div>
+
     <div class="empty" id="emptyState" style="display:none;">
-      Nenhum produto encontrado com esses filtros. <br/>
-      Dica: tente buscar por outra palavra ou clique em <strong>Limpar filtros</strong>.
+      Nenhum produto encontrado com esses filtros.<br/>
+      Dica: tente outra palavra ou clique em <strong>Limpar</strong>.
     </div>
   </section>
 
@@ -519,9 +491,6 @@
   // =========================
   // DADOS (edite aqui)
   // =========================
-  // categorias: use sempre o mesmo texto (ex: "Eletrônicos", "Casa & Cozinha"...)
-  // imagem: pode ser PNG/JPG na mesma pasta do index.html (ex: "produto1.png")
-  // link: seu link de afiliado ou página destino
   const PRODUCTS = [
     {
       id: "p1",
@@ -598,7 +567,7 @@
   ];
 
   // =========================
-  // ESTADO / FILTROS
+  // ESTADO
   // =========================
   let activeCategory = "Tudo";
   let query = "";
@@ -611,28 +580,17 @@
   const productsGrid = document.getElementById("productsGrid");
   const emptyState = document.getElementById("emptyState");
 
-  const catAccordion = document.getElementById("catAccordion");
-  const accHead = document.getElementById("accHead");
-  const accBody = document.getElementById("accBody");
-  const categoryChips = document.getElementById("categoryChips");
+  const catDrop = document.getElementById("catDrop");
+  const catBtn = document.getElementById("catBtn");
+  const catMenu = document.getElementById("catMenu");
+  const catLabel = document.getElementById("catLabel");
 
-  const toggleCategories = document.getElementById("toggleCategories");
   const clearFilters = document.getElementById("clearFilters");
-  const showAllBtn = document.getElementById("showAllBtn");
-  const scrollProducts = document.getElementById("scrollProducts");
 
   // =========================
   // HELPERS
   // =========================
-  function uniq(arr){
-    return Array.from(new Set(arr));
-  }
-
-  function openAccordion(open){
-    const willOpen = (typeof open === "boolean") ? open : !catAccordion.classList.contains("open");
-    catAccordion.classList.toggle("open", willOpen);
-    accHead.setAttribute("aria-expanded", String(willOpen));
-  }
+  function uniq(arr){ return Array.from(new Set(arr)); }
 
   function normalize(str){
     return (str || "")
@@ -659,34 +617,58 @@
   }
 
   // =========================
-  // RENDER: CATEGORIAS
+  // DROPDOWN: CATEGORIAS
   // =========================
-  function renderCategories(){
+  function setCategory(cat){
+    activeCategory = cat || "Tudo";
+    catLabel.textContent = "Categoria: " + activeCategory;
+    renderProducts();
+    closeDrop();
+    document.getElementById("produtos").scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  function renderCategoryMenu(){
     const cats = uniq(PRODUCTS.map(p => p.category)).filter(Boolean);
     const all = ["Tudo", ...cats];
 
-    categoryChips.innerHTML = all.map(c => {
-      const isActive = (c === activeCategory);
+    catMenu.innerHTML = all.map(c => {
+      const active = c === activeCategory ? "active" : "";
       return `
-        <div class="chip ${isActive ? "active" : ""}" data-cat="${c}">
-          ${c}
-        </div>
+        <button class="drop-item ${active}" type="button" role="menuitem" data-cat="${c}">
+          <span>${c}</span>
+          ${c === "Tudo" ? "<small>tudo</small>" : "<small>filtrar</small>"}
+        </button>
       `;
     }).join("");
 
-    categoryChips.querySelectorAll(".chip").forEach(chip => {
-      chip.addEventListener("click", () => {
-        activeCategory = chip.dataset.cat || "Tudo";
-        renderCategories();
-        renderProducts();
-        // opcional: ao escolher categoria, já rola para produtos
-        document.getElementById("produtos").scrollIntoView({ behavior: "smooth", block: "start" });
-      });
+    catMenu.querySelectorAll(".drop-item").forEach(btn => {
+      btn.addEventListener("click", () => setCategory(btn.dataset.cat));
     });
   }
 
+  function openDrop(){
+    catDrop.classList.add("open");
+    catBtn.setAttribute("aria-expanded","true");
+  }
+  function closeDrop(){
+    catDrop.classList.remove("open");
+    catBtn.setAttribute("aria-expanded","false");
+  }
+  function toggleDrop(){
+    if(catDrop.classList.contains("open")) closeDrop();
+    else openDrop();
+  }
+
+  catBtn.addEventListener("click", toggleDrop);
+  catBtn.addEventListener("keydown", (e)=>{ if(e.key==="Enter") toggleDrop(); });
+
+  // fecha ao clicar fora
+  document.addEventListener("click", (e)=>{
+    if(!catDrop.contains(e.target)) closeDrop();
+  });
+
   // =========================
-  // RENDER: PRODUTOS
+  // PRODUTOS
   // =========================
   function renderProducts(){
     const filtered = PRODUCTS.filter(matchesProduct);
@@ -727,50 +709,29 @@
   function runSearch(){
     query = (searchInput.value || "").trim();
     renderProducts();
-    document.getElementById("produtos").scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById("produtos").scrollIntoView({ behavior:"smooth", block:"start" });
   }
 
   searchBtn.addEventListener("click", runSearch);
   searchInput.addEventListener("keydown", (e)=>{ if(e.key==="Enter") runSearch(); });
 
   // =========================
-  // BOTÕES TOPO
+  // LIMPAR
   // =========================
-  toggleCategories.addEventListener("click", () => {
-    openAccordion();
-    if(catAccordion.classList.contains("open")){
-      catAccordion.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  });
-
-  clearFilters.addEventListener("click", () => {
+  clearFilters.addEventListener("click", ()=>{
     activeCategory = "Tudo";
     query = "";
     searchInput.value = "";
-    renderCategories();
+    catLabel.textContent = "Categoria: Tudo";
+    renderCategoryMenu();
     renderProducts();
+    closeDrop();
   });
-
-  showAllBtn.addEventListener("click", () => {
-    activeCategory = "Tudo";
-    renderCategories();
-    renderProducts();
-    document.getElementById("produtos").scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-
-  scrollProducts.addEventListener("click", () => {
-    document.getElementById("produtos").scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-
-  // =========================
-  // ACCORDION CLICK
-  // =========================
-  accHead.addEventListener("click", () => openAccordion());
 
   // =========================
   // INIT
   // =========================
-  renderCategories();
+  renderCategoryMenu();
   renderProducts();
 </script>
 
