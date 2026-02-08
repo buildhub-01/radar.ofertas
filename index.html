@@ -7,7 +7,6 @@
 
 <style>
 :root{
-  /* CORES CLARAS – CONFORTO E PAZ */
   --bg1:#f2f7f6;
   --bg2:#e8f2ef;
   --card:#ffffff;
@@ -15,10 +14,9 @@
   --muted:#6b7280;
   --border:rgba(0,0,0,0.08);
 
-  /* ENERGIA POSITIVA */
-  --accent:#2dd4bf;   /* verde água */
-  --accent2:#60a5fa;  /* azul calmo */
-  --accent3:#facc15;  /* dourado avaliação */
+  --accent:#2dd4bf;
+  --accent2:#60a5fa;
+  --accent3:#facc15;
 }
 
 *{ box-sizing:border-box; }
@@ -72,10 +70,9 @@ body{
   font-size:14px;
   color:var(--text);
 }
-.searchbox input::placeholder{ color:#9ca3af; font-weight:700; }
 
 /* CATEGORIAS */
-.cat-wrap{ position:relative; flex:0 0 auto; }
+.cat-wrap{ position:relative; }
 .cat-btn{
   border:none;
   cursor:pointer;
@@ -84,62 +81,30 @@ body{
   font-weight:900;
   color:#ffffff;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
-  box-shadow:0 10px 24px rgba(0,0,0,0.08);
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  white-space:nowrap;
 }
-.cat-btn:active{ transform: translateY(1px); }
-
 .cat-menu{
   position:absolute;
   right:0;
   top:52px;
   width:260px;
-  max-width:80vw;
   background:#ffffff;
   border:1px solid var(--border);
   border-radius:16px;
-  box-shadow:0 25px 60px rgba(0,0,0,0.12);
   padding:10px;
   display:none;
 }
 .cat-menu.open{ display:block; }
-
-.cat-title{
-  font-weight:900;
-  color:#111827;
-  font-size:12px;
-  letter-spacing:0.6px;
-  text-transform:uppercase;
-  opacity:0.75;
-  padding:8px 10px 6px;
-}
 .cat-item{
   width:100%;
   border:none;
-  cursor:pointer;
+  background:none;
   text-align:left;
-  background:transparent;
-  color:#111827;
-  padding:10px 10px;
-  border-radius:12px;
+  padding:10px;
   font-weight:900;
-  font-size:13px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
+  cursor:pointer;
+  border-radius:12px;
 }
-.cat-item:hover{
-  background:#f3f4f6;
-}
-.cat-item small{
-  color:#6b7280;
-  font-weight:800;
-  font-size:11px;
-}
+.cat-item:hover{ background:#f3f4f6; }
 
 /* PAGE */
 .wrap{
@@ -148,59 +113,13 @@ body{
   padding:20px 14px 80px;
 }
 
-/* HERO */
-.hero{
-  background:rgba(255,255,255,0.85);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:18px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.06);
-}
-.hero h1{
-  margin:0 0 6px;
-  font-size:22px;
-  font-weight:900;
-}
-.hero p{
-  margin:0;
-  color:var(--muted);
-  font-weight:700;
-  line-height:1.4;
-}
-.meta-row{
-  margin-top:12px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:space-between;
-}
-.pill{
-  background:#ffffff;
-  border:1px solid var(--border);
-  border-radius:999px;
-  padding:8px 10px;
-  font-weight:900;
-  font-size:12px;
-  color:#111827;
-  display:inline-flex;
-  gap:8px;
-  align-items:center;
-  white-space:nowrap;
-}
-.pill b{ color:#0ea5e9; }
-
 /* GRID */
 .grid{
-  margin-top:16px;
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:20px;
 }
 @media(max-width:700px){
-  .topbar-inner{ flex-wrap:wrap; }
-  .cat-wrap{ width:100%; }
-  .cat-btn{ width:100%; justify-content:center; }
   .grid{ grid-template-columns:1fr; }
 }
 
@@ -219,9 +138,6 @@ body{
 .thumb{
   height:240px;
   background:linear-gradient(135deg,#e6fffa,#eef2ff);
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 .thumb video{
   width:100%;
@@ -235,7 +151,6 @@ body{
   display:flex;
   flex-direction:column;
   gap:8px;
-  flex:1;
   text-align:center;
 }
 .title{
@@ -243,7 +158,6 @@ body{
   font-weight:900;
   line-height:1.3;
   margin:0;
-
   display:-webkit-box;
   -webkit-line-clamp:2;
   -webkit-box-orient:vertical;
@@ -253,20 +167,16 @@ body{
 .desc{
   font-size:13px;
   color:var(--muted);
-  line-height:1.4;
-  margin:0;
 }
 .rating{
   font-size:13px;
   font-weight:900;
-  color:#111827;
 }
 .rating .stars{ color:var(--accent3); }
 .rating small{
   display:block;
-  font-weight:800;
   color:var(--muted);
-  margin-top:2px;
+  font-weight:800;
 }
 
 /* CTA */
@@ -278,179 +188,120 @@ body{
   font-weight:900;
   background:linear-gradient(135deg,var(--accent),var(--accent2));
   color:#ffffff;
-  display:block;
 }
-.cta-link:hover{ filter:brightness(1.05); }
 </style>
 </head>
 
 <body>
 
-<div class="topbar" role="banner">
+<div class="topbar">
   <div class="topbar-inner">
-
-    <div class="searchbox" aria-label="Pesquisar produtos">
-      <span style="font-weight:900;">🔎</span>
-      <input id="searchInput" type="text" placeholder="Pesquisar produto... (ex: aspirador, mochila)" autocomplete="off" />
+    <div class="searchbox">
+      🔎
+      <input id="searchInput" type="text" placeholder="Pesquisar produto...">
     </div>
 
     <div class="cat-wrap">
-      <button class="cat-btn" id="catBtn" type="button" aria-expanded="false" aria-controls="catMenu">
-        ☰ Categorias
-      </button>
-
-      <div class="cat-menu" id="catMenu" role="menu" aria-label="Categorias">
-        <div class="cat-title">Escolha uma categoria</div>
-
-        <button class="cat-item" type="button" data-category="Todos" role="menuitem">
-          Todos <small>(ver tudo)</small>
-        </button>
-
-        <button class="cat-item" type="button" data-category="Volta às aulas" role="menuitem">
-          Volta às aulas <small>Ativo</small>
-        </button>
-
-        <button class="cat-item" type="button" data-category="Casa & Cozinha" role="menuitem">
-          Casa & Cozinha <small>Ativo</small>
-        </button>
-
-        <button class="cat-item" type="button" data-category="Eletrônicos" role="menuitem">
-          Eletrônicos <small>Em breve</small>
-        </button>
-        <button class="cat-item" type="button" data-category="Beleza" role="menuitem">
-          Beleza <small>Em breve</small>
-        </button>
-        <button class="cat-item" type="button" data-category="Moda" role="menuitem">
-          Moda <small>Em breve</small>
-        </button>
-        <button class="cat-item" type="button" data-category="Fitness" role="menuitem">
-          Fitness <small>Em breve</small>
-        </button>
+      <button class="cat-btn" id="catBtn">☰ Categorias</button>
+      <div class="cat-menu" id="catMenu">
+        <button class="cat-item" data-category="Todos">Todos</button>
+        <button class="cat-item" data-category="Volta às aulas">Volta às aulas</button>
+        <button class="cat-item" data-category="Casa & Cozinha">Casa & Cozinha</button>
+        <button class="cat-item" data-category="Utilidades">Utilidades</button>
       </div>
     </div>
-
   </div>
 </div>
 
 <main class="wrap">
-  <section class="hero" aria-label="Introdução">
-    <h1>Radar De Ofertas</h1>
-    <p>Achadinhos e promoções selecionadas. Use a pesquisa e as categorias para encontrar rápido.</p>
+<section class="grid" id="grid">
 
-    <div class="meta-row">
-      <div class="pill">🏷 Categoria: <span id="activeCategory"><b>Todos</b></span></div>
-      <div class="pill">⚡ Atualizações: <b>Diárias</b></div>
+<!-- PRODUTO 1 -->
+<article class="card" data-title="material escolar mochila feminina" data-category="Volta às aulas">
+  <div class="thumb">
+    <video src="kit escolar.mp4" autoplay muted loop playsinline></video>
+  </div>
+  <div class="content">
+    <h3 class="title">Material Escolar Completo com Mochila Escolar Feminina</h3>
+    <p class="desc">Ideal para volta às aulas, organizado e prático.</p>
+    <div class="rating">
+      <span class="stars">★★★★★</span> 4.8
+      <small>489 avaliações</small>
     </div>
-  </section>
+    <a class="cta-link" href="https://s.shopee.com.br/4VXBcDAb60" target="_blank">Ver na Shopee</a>
+  </div>
+</article>
 
-  <section class="grid" id="grid" aria-label="Produtos">
-    <!-- PRODUTO 1 -->
-    <article class="card"
-      data-title="material escolar completo mochila escolar feminina volta as aulas kit escolar"
-      data-desc="ideal para volta às aulas, organizado e prático"
-      data-category="Volta às aulas">
-      <div class="thumb">
-        <video src="kit escolar.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div class="content">
-        <h3 class="title">Material Escolar Completo com Mochila Escolar Feminina</h3>
-        <p class="desc">Ideal para volta às aulas, organizado e prático.</p>
-        <div class="rating">
-          <span class="stars">★★★★★</span> 4.8
-          <small>489 avaliações</small>
-        </div>
-        <a class="cta-link" href="https://s.shopee.com.br/4VXBcDAb60" target="_blank" rel="noopener">
-          Ver na Shopee
-        </a>
-      </div>
-    </article>
+<!-- PRODUTO 2 -->
+<article class="card" data-title="aspirador portatil limpeza casa" data-category="Casa & Cozinha">
+  <div class="thumb">
+    <video src="aspirador_portatil.mp4" autoplay muted loop playsinline></video>
+  </div>
+  <div class="content">
+    <h3 class="title">Aspirador de Pó Portátil Recarregável</h3>
+    <p class="desc">Limpeza rápida, potente e sem fio.</p>
+    <div class="rating">
+      <span class="stars">★★★★★</span> 4.6
+      <small>2,7 mil avaliações • 6 mil+ vendidos</small>
+    </div>
+    <a class="cta-link" href="https://s.shopee.com.br/5VPip0MckJ" target="_blank">Ver na Shopee</a>
+  </div>
+</article>
 
-    <!-- PRODUTO 2 -->
-    <article class="card"
-      data-title="aspirador de po portatil recarregavel limpeza casa potente mini limpeza"
-      data-desc="limpeza rápida, potente e sem fio para o dia a dia"
-      data-category="Casa & Cozinha">
-      <div class="thumb">
-        <video src="aspirador_portatil.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div class="content">
-        <h3 class="title">Aspirador de Pó Portátil Recarregável</h3>
-        <p class="desc">Limpeza rápida, potente e sem fio para o dia a dia.</p>
-        <div class="rating">
-          <span class="stars">★★★★★</span> 4.6
-          <small>2,7 mil avaliações • 6 mil+ vendidos</small>
-        </div>
-        <a class="cta-link" href="https://s.shopee.com.br/5VPip0MckJ" target="_blank" rel="noopener">
-          Ver na Shopee
-        </a>
-      </div>
-    </article>
-  </section>
+<!-- PRODUTO 3 -->
+<article class="card" data-title="copo termico grande inox canudo alca" data-category="Utilidades">
+  <div class="thumb">
+    <video src="copotermico.mp4" autoplay muted loop playsinline></video>
+  </div>
+  <div class="content">
+    <h3 class="title">Copo Térmico Grande 1200ml em Aço Inox</h3>
+    <p class="desc">Mantém a bebida gelada por horas, com alça e canudo.</p>
+    <div class="rating">
+      <span class="stars">★★★★★</span> 4.8
+      <small>236 avaliações • 443 vendidos</small>
+    </div>
+    <a class="cta-link" href="https://s.shopee.com.br/5L6Ik07SZC" target="_blank">
+      Ver na Shopee
+    </a>
+  </div>
+</article>
+
+</section>
 </main>
 
 <script>
-  // ELEMENTOS
-  const catBtn = document.getElementById("catBtn");
-  const catMenu = document.getElementById("catMenu");
-  const activeCategoryEl = document.getElementById("activeCategory");
-  const searchInput = document.getElementById("searchInput");
-  const cards = Array.from(document.querySelectorAll(".card"));
+const searchInput = document.getElementById("searchInput");
+const cards = document.querySelectorAll(".card");
+const catBtn = document.getElementById("catBtn");
+const catMenu = document.getElementById("catMenu");
+let activeCategory = "Todos";
 
-  let activeCategory = "Todos";
+catBtn.onclick = () => catMenu.classList.toggle("open");
 
-  function normalize(s){
-    return (s || "")
-      .toString()
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
-  }
-
-  function closeMenu(){
+document.querySelectorAll(".cat-item").forEach(btn=>{
+  btn.onclick = ()=>{
+    activeCategory = btn.dataset.category;
     catMenu.classList.remove("open");
-    catBtn.setAttribute("aria-expanded", "false");
+    filter();
   }
+});
 
-  // Abrir/fechar menu
-  catBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const isOpen = catMenu.classList.contains("open");
-    catMenu.classList.toggle("open", !isOpen);
-    catBtn.setAttribute("aria-expanded", String(!isOpen));
+searchInput.oninput = filter;
+
+function normalize(s){
+  return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+}
+
+function filter(){
+  const q = normalize(searchInput.value);
+  cards.forEach(card=>{
+    const title = normalize(card.dataset.title || "");
+    const cat = card.dataset.category;
+    const showCat = activeCategory==="Todos" || cat===activeCategory;
+    const showSearch = !q || title.includes(q);
+    card.style.display = (showCat && showSearch) ? "" : "none";
   });
-
-  document.addEventListener("click", closeMenu);
-  catMenu.addEventListener("click", (e) => e.stopPropagation());
-
-  // Clique categoria
-  catMenu.querySelectorAll(".cat-item").forEach(btn => {
-    btn.addEventListener("click", () => {
-      activeCategory = btn.getAttribute("data-category") || "Todos";
-      activeCategoryEl.innerHTML = `<b>${activeCategory}</b>`;
-      closeMenu();
-      applyFilters();
-    });
-  });
-
-  // Pesquisa
-  searchInput.addEventListener("input", applyFilters);
-
-  function applyFilters(){
-    const q = normalize(searchInput.value.trim());
-
-    cards.forEach(card => {
-      const title = normalize(card.getAttribute("data-title") || "");
-      const desc = normalize(card.getAttribute("data-desc") || "");
-      const cat = (card.getAttribute("data-category") || "Todos");
-
-      const matchCategory = (activeCategory === "Todos") ? true : (cat === activeCategory);
-      const matchSearch = (!q) ? true : (title.includes(q) || desc.includes(q));
-
-      card.style.display = (matchCategory && matchSearch) ? "" : "none";
-    });
-  }
-
-  applyFilters();
+}
 </script>
 
 </body>
