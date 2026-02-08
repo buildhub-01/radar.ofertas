@@ -275,7 +275,7 @@
     @media (max-width: 420px){
       .grid{ grid-template-columns: 1fr; }
       .brand{ min-width:auto; }
-      .brand .name{ display:none; } /* no celular deixa só o logo para sobrar espaço */
+      .brand .name{ display:none; }
     }
 
     .card{
@@ -303,7 +303,6 @@
       position:relative;
     }
 
-    /* Thumb com imagem real */
     .thumb-img{
       width:100%;
       height:100%;
@@ -365,7 +364,6 @@
       font-weight:700;
     }
 
-    /* CTA real (quando tem link) */
     .cta-link{
       margin-top:auto;
       display:block;
@@ -384,7 +382,6 @@
       transition: transform .12s ease, filter .12s ease;
     }
 
-    /* CTA em breve */
     .cta{
       margin-top:auto;
       display:block;
@@ -396,7 +393,7 @@
       background:rgba(255,255,255,0.06);
       border:1px solid rgba(255,255,255,0.12);
       color:rgba(234,240,255,0.85);
-      pointer-events:none; /* em breve */
+      pointer-events:none;
       user-select:none;
     }
 
@@ -430,7 +427,6 @@
 
 <body>
 
-  <!-- Topo: pesquisa + categorias -->
   <div class="topbar" role="banner">
     <div class="topbar-inner">
       <div class="brand">
@@ -502,10 +498,9 @@
       </div>
     </section>
 
-    <!-- Produtos -->
     <section class="grid" id="grid" aria-label="Produtos em destaque">
 
-      <!-- PRODUTO 1 (Shopee) -->
+      <!-- PRODUTO 1 (Shopee) - LINK ATUALIZADO -->
       <article
         class="card"
         data-title="material escolar completo com sem estojo escolar feminino mochila escolar feminina volta as aulas"
@@ -518,97 +513,13 @@
         <div class="content">
           <h3 class="title">Material Escolar Completo (Mochila Escolar Feminina • Volta às aulas)</h3>
           <p class="muted">Clique para abrir o produto na Shopee. (Preço pode variar)</p>
-          <a class="cta-link" href="https://s.shopee.com.br/6pv6HiHr52" target="_blank" rel="noopener">
+          <a class="cta-link" href="https://s.shopee.com.br/4VXBcDAb60" target="_blank" rel="noopener">
             Ver na Shopee
           </a>
         </div>
       </article>
 
       <!-- PLACEHOLDERS (Em breve) -->
-      <article class="card" data-title="em breve" data-category="Todos">
-        <div class="thumb">
-          <span class="badge">EM BREVE</span>
-          <div class="placeholder">Produto em breve</div>
-        </div>
-        <div class="content">
-          <h3 class="title">Em breve</h3>
-          <p class="muted">Vou adicionar produtos aos poucos aqui.</p>
-          <span class="cta">Em breve</span>
-        </div>
-      </article>
-
-      <article class="card" data-title="em breve" data-category="Todos">
-        <div class="thumb">
-          <span class="badge">EM BREVE</span>
-          <div class="placeholder">Produto em breve</div>
-        </div>
-        <div class="content">
-          <h3 class="title">Em breve</h3>
-          <p class="muted">Vou adicionar produtos aos poucos aqui.</p>
-          <span class="cta">Em breve</span>
-        </div>
-      </article>
-
-      <article class="card" data-title="em breve" data-category="Todos">
-        <div class="thumb">
-          <span class="badge">EM BREVE</span>
-          <div class="placeholder">Produto em breve</div>
-        </div>
-        <div class="content">
-          <h3 class="title">Em breve</h3>
-          <p class="muted">Vou adicionar produtos aos poucos aqui.</p>
-          <span class="cta">Em breve</span>
-        </div>
-      </article>
-
-      <article class="card" data-title="em breve" data-category="Todos">
-        <div class="thumb">
-          <span class="badge">EM BREVE</span>
-          <div class="placeholder">Produto em breve</div>
-        </div>
-        <div class="content">
-          <h3 class="title">Em breve</h3>
-          <p class="muted">Vou adicionar produtos aos poucos aqui.</p>
-          <span class="cta">Em breve</span>
-        </div>
-      </article>
-
-      <article class="card" data-title="em breve" data-category="Todos">
-        <div class="thumb">
-          <span class="badge">EM BREVE</span>
-          <div class="placeholder">Produto em breve</div>
-        </div>
-        <div class="content">
-          <h3 class="title">Em breve</h3>
-          <p class="muted">Vou adicionar produtos aos poucos aqui.</p>
-          <span class="cta">Em breve</span>
-        </div>
-      </article>
-
-      <article class="card" data-title="em breve" data-category="Todos">
-        <div class="thumb">
-          <span class="badge">EM BREVE</span>
-          <div class="placeholder">Produto em breve</div>
-        </div>
-        <div class="content">
-          <h3 class="title">Em breve</h3>
-          <p class="muted">Vou adicionar produtos aos poucos aqui.</p>
-          <span class="cta">Em breve</span>
-        </div>
-      </article>
-
-      <article class="card" data-title="em breve" data-category="Todos">
-        <div class="thumb">
-          <span class="badge">EM BREVE</span>
-          <div class="placeholder">Produto em breve</div>
-        </div>
-        <div class="content">
-          <h3 class="title">Em breve</h3>
-          <p class="muted">Vou adicionar produtos aos poucos aqui.</p>
-          <span class="cta">Em breve</span>
-        </div>
-      </article>
-
       <article class="card" data-title="em breve" data-category="Todos">
         <div class="thumb">
           <span class="badge">EM BREVE</span>
@@ -710,7 +621,6 @@
 
     function applyFilters(){
       const q = normalize(searchInput.value.trim());
-      let visible = 0;
 
       cards.forEach(card => {
         const title = normalize(card.getAttribute("data-title") || "");
@@ -721,7 +631,6 @@
 
         const show = matchCategory && matchSearch;
         card.style.display = show ? "" : "none";
-        if(show) visible++;
       });
     }
 
